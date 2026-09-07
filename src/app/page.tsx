@@ -8,6 +8,7 @@ import {
   bestOffers,
   hitsProducts,
   saleProducts,
+  newProducts,
   products,
   site,
 } from '@/lib/catalog';
@@ -23,6 +24,7 @@ export default function HomePage() {
   const offers = bestOffers(10);
   const hits = hitsProducts(10);
   const sales = saleProducts(10);
+  const fresh = newProducts(10);
   const hair = rootCategories[0];
   const hairSubs = childCategories(hair.slug);
 
@@ -139,6 +141,20 @@ export default function HomePage() {
           {hits.map((p) => <ProductCard key={p.id} p={p} />)}
         </div>
       </section>
+
+      {/* ---------------------- Новинки ---------------------- */}
+      {fresh.length > 0 && (
+        <section className="section">
+          <div className="section-head">
+            <h2>Новинки</h2>
+            <span className="rule" />
+            <Link href="/catalog">В каталог →</Link>
+          </div>
+          <div className="prod-grid">
+            {fresh.map((p) => <ProductCard key={p.id} p={p} />)}
+          </div>
+        </section>
+      )}
 
       {/* ---------------------- Бренды ---------------------- */}
       <section className="section">

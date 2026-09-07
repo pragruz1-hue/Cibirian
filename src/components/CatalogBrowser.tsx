@@ -92,6 +92,7 @@ export default function CatalogBrowser({
   if (f.hit) applied.push({ label: 'Хит', clear: () => patch({ hit: false }) });
   if (f.sale) applied.push({ label: 'Акция', clear: () => patch({ sale: false }) });
   if (f.recommend) applied.push({ label: 'Советуем', clear: () => patch({ recommend: false }) });
+  if (f.isNew) applied.push({ label: 'Новинки', clear: () => patch({ isNew: false }) });
   if (f.priceFrom !== null || f.priceTo !== null)
     applied.push({
       label: `${f.priceFrom ?? facets.priceMin}–${f.priceTo ?? facets.priceMax} руб`,
@@ -202,6 +203,9 @@ export default function CatalogBrowser({
                 </button>
                 <button className={`chip${f.recommend ? ' on' : ''}`} onClick={() => patch({ recommend: !f.recommend })}>
                   Советуем · {facets.counts.recommend}
+                </button>
+                <button className={`chip${f.isNew ? ' on' : ''}`} onClick={() => patch({ isNew: !f.isNew })}>
+                  Новинки · {facets.counts.isNew}
                 </button>
               </div>
               <label className={`check${f.inStockOnly ? ' on' : ''}`}>

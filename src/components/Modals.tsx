@@ -216,6 +216,7 @@ export function QuickViewModal() {
                   {p.hit && <span className="badge badge-hit">Хит</span>}
                   {p.recommend && <span className="badge badge-rec">Советуем</span>}
                   {(p.sale || p.oldPrice) && <span className="badge badge-sale">Акция</span>}
+                  {p.isNew && <span className="badge badge-new">Новинка</span>}
                 </div>
                 <Img src={p.images[0]} alt={p.name} fallbackLabel={p.brand} />
               </div>

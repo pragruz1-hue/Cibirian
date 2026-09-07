@@ -19,8 +19,8 @@ export function Badges({ p, small }: { p: Product; small?: boolean }) {
           {p.oldPrice ? `−${Math.round((1 - p.price / p.oldPrice) * 100)}%` : 'Акция'}
         </span>
       )}
-      {!p.inStock && <span className="badge badge-new" style={{ background: '#8b9998' }}>Под заказ</span>}
-      {small ? null : null}
+      {p.isNew && <span className="badge badge-new">Новинка</span>}
+      {!p.inStock && <span className="badge" style={{ background: '#8b9998' }}>Под заказ</span>}
     </div>
   );
 }
@@ -118,6 +118,7 @@ export function ProductRow({ p }: { p: Product }) {
             {p.hit && <span className="badge badge-hit">Хит</span>}
             {p.recommend && <span className="badge badge-rec">Советуем</span>}
             {(p.sale || p.oldPrice) && <span className="badge badge-sale">Акция</span>}
+            {p.isNew && <span className="badge badge-new">Новинка</span>}
           </span>
         </div>
       </div>

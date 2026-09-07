@@ -144,6 +144,7 @@ export function applyFilters(list: Product[], f: FilterState): Product[] {
     if (f.hit && !p.hit) return false;
     if (f.sale && !(p.sale || p.oldPrice)) return false;
     if (f.recommend && !p.recommend) return false;
+    if (f.isNew && !p.isNew) return false;
     if (f.priceFrom !== null && p.price < f.priceFrom) return false;
     if (f.priceTo !== null && p.price > f.priceTo) return false;
     return true;
@@ -155,7 +156,7 @@ export function applyFilters(list: Product[], f: FilterState): Product[] {
 export function sortProducts(list: Product[], sort: string): Product[] {
   const arr = [...list];
   const popularity = (p: Product) =>
-    (p.hit ? 100 : 0) + (p.recommend ? 60 : 0) + (p.sale ? 30 : 0) + seededShows(p.id) / 100;
+    (p.hit ? 100 : 0) + (p.recommend ? 60 : 0) + (p.isNew ? 45 : 0) + (p.sale ? 30 : 0) + seededShows(p.id) / 100;
   switch (sort) {
     case 'name_asc':
       return arr.sort((a, b) => a.name.localeCompare(b.name, 'ru'));
@@ -184,7 +185,7 @@ export interface Facets {
   hairTypes: { value: string; count: number }[];
   priceMin: number;
   priceMax: number;
-  counts: { hit: number; sale: number; recommend: number; inStock: number };
+  counts: { hit: number; sale: number; recommend: number; isNew: number; inStock: number };
 }
 
 function tally(list: Product[], pick: (p: Product) => string[]): { value: string; count: number }[] {
@@ -209,6 +210,7 @@ export function buildFacets(list: Product[]): Facets {
       hit: list.filter((p) => p.hit).length,
       sale: list.filter((p) => p.sale || p.oldPrice).length,
       recommend: list.filter((p) => p.recommend).length,
+      isNew: list.filter((p) => p.isNew).length,
       inStock: list.filter((p) => p.inStock).length,
     },
   };
@@ -242,6 +244,10 @@ export function saleProducts(limit = 10): Product[] {
   return sortProducts(products.filter((p) => p.sale || p.oldPrice), 'price_asc').slice(0, limit);
 }
 
+export function newProducts(limit = 10): Product[] {
+  return sortProducts(products.filter((p) => p.isNew), 'popular').slice(0, limit);
+}
+
 export function searchProducts(q: string, limit = 60): Product[] {
   if (!q.trim()) return [];
   return sortProducts(products.filter((p) => matchesQuery(p, q)), 'popular').slice(0, limit);
@@ -257,6 +263,7 @@ export function activeFiltersCount(f: FilterState): number {
     (f.hit ? 1 : 0) +
     (f.sale ? 1 : 0) +
     (f.recommend ? 1 : 0) +
+    (f.isNew ? 1 : 0) +
     (f.priceFrom !== null ? 1 : 0) +
     (f.priceTo !== null ? 1 : 0) +
     (f.q ? 1 : 0)

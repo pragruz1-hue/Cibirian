@@ -52,6 +52,7 @@ export default function ProductView({ product: p }: { product: Product }) {
             {p.hit && <span className="badge badge-hit">Хит</span>}
             {p.recommend && <span className="badge badge-rec">Советуем</span>}
             {(p.sale || p.oldPrice) && <span className="badge badge-sale">{discount ? `−${discount}%` : 'Акция'}</span>}
+            {p.isNew && <span className="badge badge-new">Новинка</span>}
           </div>
 
           <div className="p-brand">

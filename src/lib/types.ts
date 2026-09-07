@@ -22,6 +22,7 @@ export interface Product {
   hit?: boolean;
   recommend?: boolean;
   sale?: boolean;
+  isNew?: boolean;
   purpose?: string[];
   hairType?: string[];
   palette?: string[];
@@ -48,6 +49,7 @@ export interface FilterState {
   hit: boolean;
   sale: boolean;
   recommend: boolean;
+  isNew: boolean;
   priceFrom: number | null;
   priceTo: number | null;
   sort: string;
@@ -64,6 +66,7 @@ export const EMPTY_FILTERS: FilterState = {
   hit: false,
   sale: false,
   recommend: false,
+  isNew: false,
   priceFrom: null,
   priceTo: null,
   sort: 'popular',

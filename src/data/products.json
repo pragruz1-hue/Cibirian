@@ -1238,5 +1238,777 @@
   "images": [
    "https://sibcirulnik.ru/upload/iblock/589/589c083ab317206f6b824a9240343f86.jpeg"
   ]
+ },
+ {
+  "id": 50,
+  "slug": "mnogofunktsionalnaya_maska_sprey_dlya_ukhoda_za_volosami_20_v_1_aaa_multi_spray_mask_20_in_1_",
+  "name": "Маска-спрей многофункциональная для волос 20 в 1 KAARAL AAA MULTI SPRAY MASK 20 IN 1, 150 мл",
+  "brand": "KAARAL",
+  "line": "AAA",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/maski_dlya_volos",
+  "price": 680,
+  "oldPrice": null,
+  "volume": "150 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "восстанавливает",
+   "увлажняет",
+   "облегчает расчесывание"
+  ],
+  "hairType": [
+   "поврежденные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/238/3vapc7zd3e8ggj905ws70j8qe7mc1qzd/vxzvr34ixzq53p98r71pq49odh4ctg6y.jpg"
+  ]
+ },
+ {
+  "id": 51,
+  "slug": "maska_lipidnaya_dlya_intensivnogo_vosstanovleniya_volos_500_ml",
+  "name": "Маска липидная для интенсивного восстановления волос TEFIA SERVICE AMBIENT, 500 мл",
+  "brand": "TEFIA",
+  "line": "SERVICE AMBIENT",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/maski_dlya_volos",
+  "price": 1344,
+  "oldPrice": null,
+  "volume": "500 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "восстанавливает",
+   "питает"
+  ],
+  "hairType": [
+   "сухие",
+   "поврежденные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/545/2n4dzz4rkyty89uk1c10ba27xh7boq8a/2023_02_06_00_42_11.png"
+  ]
+ },
+ {
+  "id": 52,
+  "slug": "maska_dlya_vosstanovleniya_volos_exito_keratin_500_ml",
+  "name": "Маска для восстановления волос EXITO Keratin 500 мл",
+  "brand": "EXITO",
+  "line": "KERATIN",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/maski_dlya_volos",
+  "price": 815,
+  "oldPrice": null,
+  "volume": "500 мл",
+  "inStock": true,
+  "hit": true,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "восстанавливает",
+   "разглаживает"
+  ],
+  "hairType": [
+   "поврежденные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/8f0/x4kawckz7v2x811ueu7sw8s5oveygbqq.png"
+  ]
+ },
+ {
+  "id": 53,
+  "slug": "maska_kaaral_hydra_intensivnaya_uvlazhnyayushchaya_pitatelnaya_dlya_volos_500ml_novyy_dizayn",
+  "name": "Маска для волос увлажняющая KAARAL HYDRA, 500 мл",
+  "brand": "KAARAL",
+  "line": "HYDRA",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/maski_dlya_volos",
+  "price": 1850,
+  "oldPrice": null,
+  "volume": "500 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "увлажняет",
+   "питает"
+  ],
+  "hairType": [
+   "сухие"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/45d/ue3ybue33d4v6rmsnszia7692cdbii26/ora.png"
+  ]
+ },
+ {
+  "id": 54,
+  "slug": "krem_maska_kaaral_pitatelnaya_s_matochnym_molochkom_500_ml",
+  "name": "Крем-маска для волос питательная с маточным молочком KAARAL PROFES ROYAL, 500 мл",
+  "brand": "KAARAL",
+  "line": "ROYAL",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/maski_dlya_volos",
+  "price": 1760,
+  "oldPrice": null,
+  "volume": "500 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": true,
+  "sale": true,
+  "isNew": false,
+  "purpose": [
+   "питает",
+   "восстанавливает"
+  ],
+  "hairType": [
+   "сухие",
+   "ослабленные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/bc6/z5w006apqg4ir4726lzmn6xny6oe8iqc/kaaral_mask.jpg"
+  ]
+ },
+ {
+  "id": 55,
+  "slug": "lipidnaya_maska_dlya_volos_500ml_ollin_professional_l_p_syst_",
+  "name": "Липидная маска для волос 500мл OLLIN PROFESSIONAL L&P SYST",
+  "brand": "OLLIN",
+  "line": "L&P SYSTEM",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/maski_dlya_volos",
+  "price": 890,
+  "oldPrice": null,
+  "volume": "500 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": true,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "восстанавливает",
+   "питает"
+  ],
+  "hairType": [
+   "сухие",
+   "поврежденные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/73e/js34faa1mabuevnw8f2c63smwr8aioi1.jpg"
+  ]
+ },
+ {
+  "id": 56,
+  "slug": "kebren_hydra_therapy_500_ml_intensivnaya_maska_dlya_uvlazhneniya_volos_s_maslom_kamelii_i_tregalozoy",
+  "name": "KEBREN HYDRA THERAPY 500 мл Интенсивная маска для увлажнения волос с маслом камелии и трегалозой",
+  "brand": "KEBREN",
+  "line": "HYDRA THERAPY",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/maski_dlya_volos",
+  "price": 1250,
+  "oldPrice": null,
+  "volume": "500 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": true,
+  "purpose": [
+   "увлажняет",
+   "питает"
+  ],
+  "hairType": [
+   "сухие"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/76e/1l8vggtpxh9u3qyh0fs5fcvbu55c10z5.jpg",
+   "https://sibcirulnik.ru/upload/iblock/736/h3bk43ixo44t0u5z9wtuuivqcl8ev3vn.jpg",
+   "https://sibcirulnik.ru/upload/iblock/bbf/k395xh56b1544pew42rbku6z8xtji00q.jpg"
+  ]
+ },
+ {
+  "id": 57,
+  "slug": "maska_dlya_volos_s_ekstraktom_laminarii_ollin_salon_beauty_500ml",
+  "name": "Маска для волос с экстрактом ламинарии OLLIN SALON BEAUTY, 500 мл",
+  "brand": "OLLIN",
+  "line": "SALON BEAUTY",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/maski_dlya_volos",
+  "price": 690,
+  "oldPrice": null,
+  "volume": "500 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "увлажняет",
+   "придает гладкость"
+  ],
+  "hairType": [
+   "все типы"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/8d9/0uislzhs5d7rikpy08rsfhx3jn1en1la/ollin_salon_beauty_mask_uvlazhnenie_i_gladkost.jpg"
+  ]
+ },
+ {
+  "id": 58,
+  "slug": "maska_dlya_intensivnogo_vosstanovleniya_volos_my_500_ml",
+  "name": "Маска для интенсивного восстановления волос TEFIA MYCARE, 500 мл",
+  "brand": "TEFIA",
+  "line": "MYCARE",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/maski_dlya_volos",
+  "price": 977,
+  "oldPrice": null,
+  "volume": "500 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "восстанавливает"
+  ],
+  "hairType": [
+   "поврежденные",
+   "ослабленные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/cfc/cfc21461d6cdff212a79027a7e8cd12e.png"
+  ]
+ },
+ {
+  "id": 59,
+  "slug": "maska_uvlazhnenie_peptidnaya_dlya_sukhikh_i_lomkikh_volos_500_ml_ambient_moisture",
+  "name": "Маска-увлажнение пептидная для сухих и ломких волос, 500 мл AMBIENT MOISTURE",
+  "brand": "TEFIA",
+  "line": "AMBIENT MOISTURE",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/maski_dlya_volos",
+  "price": 1596,
+  "oldPrice": null,
+  "volume": "500 мл",
+  "inStock": true,
+  "hit": true,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "увлажняет",
+   "восстанавливает"
+  ],
+  "hairType": [
+   "сухие",
+   "тонкие"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/567/f7bnr4h8l0bm0j7mxb55bv8cp490k006.webp"
+  ]
+ },
+ {
+  "id": 60,
+  "slug": "sukhoe_maslo_sprey_dlya_volos_ollin_perfect_hair_200ml_",
+  "name": "Масло-спрей для волос сухое OLLIN PERFECT HAIR, 200 мл",
+  "brand": "OLLIN",
+  "line": "PERFECT HAIR",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/sprei_volos",
+  "price": 700,
+  "oldPrice": null,
+  "volume": "200 мл",
+  "inStock": true,
+  "hit": true,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "придает блеск",
+   "увлажняет"
+  ],
+  "hairType": [
+   "все типы"
+  ],
+  "images": []
+ },
+ {
+  "id": 61,
+  "slug": "kebren_total_repair_50_ml_maslo_ukhod_dlya_glubokogo_vosstanovleniya_i_bleska_volos_",
+  "name": "KEBREN TOTAL REPAIR 50 мл Масло-уход для глубокого восстановления и блеска волос",
+  "brand": "KEBREN",
+  "line": "TOTAL REPAIR",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/masla",
+  "price": 1160,
+  "oldPrice": null,
+  "volume": "50 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": true,
+  "purpose": [
+   "восстанавливает",
+   "придает блеск"
+  ],
+  "hairType": [
+   "поврежденные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/18c/824s6rrf025d0ax4zewvpzg1w3n5oqqs.jpg",
+   "https://sibcirulnik.ru/upload/iblock/93a/u06ol8j5m733v31rrp77k3uqwtws7mr4.jpg",
+   "https://sibcirulnik.ru/upload/iblock/16f/sy1f0ymo30lhb31yk3i6p2qktzgb9uiz.jpg"
+  ]
+ },
+ {
+  "id": 62,
+  "slug": "maslo_dlya_volos_ollin_perfect_hair_tres_oil_50ml",
+  "name": "Масло для волос OLLIN PERFECT HAIR TRES OIL, 50 мл",
+  "brand": "OLLIN",
+  "line": "TRES OIL",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/masla",
+  "price": 780,
+  "oldPrice": null,
+  "volume": "50 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "питает",
+   "придает блеск"
+  ],
+  "hairType": [
+   "сухие"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/96b/7woh1mn7dkahfcjuxfl7pv0u13uspcq9/ollin_oil_tres_oil.jpg"
+  ]
+ },
+ {
+  "id": 63,
+  "slug": "maslo_dlya_osvetlennykh_volos_exito_blond_100_ml",
+  "name": "Масло для осветленных волос EXITO Blond 100 мл",
+  "brand": "EXITO",
+  "line": "BLOND",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/masla",
+  "price": 864,
+  "oldPrice": null,
+  "volume": "100 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": true,
+  "sale": true,
+  "isNew": false,
+  "purpose": [
+   "увлажняет",
+   "нейтрализует желтый пигмент"
+  ],
+  "hairType": [
+   "окрашенные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/58a/eikctvfit03rl0o1yizv921oymjf58n3.png",
+   "https://sibcirulnik.ru/upload/iblock/dbf/6pg0zdroeb9enw22t2fmd4h4247g3ch7.jpg",
+   "https://sibcirulnik.ru/upload/iblock/d5b/8kd0gkado8mesjbcgxn6zxauzwwzayll.jpg",
+   "https://sibcirulnik.ru/upload/iblock/947/nvwxcni0z0i05smapsl0colk3ogix0nf.jpg"
+  ]
+ },
+ {
+  "id": 64,
+  "slug": "sovershennoe_maslo_dlya_povrezhdennykh_volos_100_ml_ambient_express_",
+  "name": "Масло для поврежденных волос, TEFIA AMBIENT EXPRESS, 100 мл",
+  "brand": "TEFIA",
+  "line": "AMBIENT EXPRESS",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/masla",
+  "price": 1796,
+  "oldPrice": null,
+  "volume": "100 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "восстанавливает",
+   "защищает"
+  ],
+  "hairType": [
+   "поврежденные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/aaf/flozbbywmgmpynexf2g8g19xyv2qlkyc/2023_08_03_09_17_25.png"
+  ]
+ },
+ {
+  "id": 65,
+  "slug": "myed_dlya_volos_ollin_perfect_hair_30ml",
+  "name": "Мёд для волос OLLIN PERFECT HAIR, 30 мл",
+  "brand": "OLLIN",
+  "line": "PERFECT HAIR",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/masla",
+  "price": 800,
+  "oldPrice": null,
+  "volume": "30 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "питает",
+   "придает блеск"
+  ],
+  "hairType": [
+   "сухие",
+   "тонкие"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/e7b/8oyej4igef65ztqkbgnfqft5ha20guu7/397908_med_dlya_volos.png"
+  ]
+ },
+ {
+  "id": 66,
+  "slug": "maslo_ollin_shine_blond_omega_3_50ml",
+  "name": "Масло для волос ОМЕГА-3 OLLIN SHINE BLOND, 50 мл",
+  "brand": "OLLIN",
+  "line": "SHINE BLOND",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/masla",
+  "price": 830,
+  "oldPrice": null,
+  "volume": "50 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "придает блеск",
+   "нейтрализует желтый пигмент"
+  ],
+  "hairType": [
+   "окрашенные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/439/fa89vdeqhbvm8198lwe5ddaz0h92c0f3.jpg"
+  ]
+ },
+ {
+  "id": 67,
+  "slug": "maslo_prevoshing_100_ml_ambient_long_",
+  "name": "Масло-превошинг для волос TEFIA AMBIENT LONG, 100 мл",
+  "brand": "TEFIA",
+  "line": "AMBIENT LONG",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/masla",
+  "price": 1313,
+  "oldPrice": null,
+  "volume": "100 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "защищает",
+   "питает"
+  ],
+  "hairType": [
+   "все типы"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/e0e/27qvzc6d73l2vxplzaohp69hn3esl0th/Long_prewash.webp"
+  ]
+ },
+ {
+  "id": 68,
+  "slug": "maslo_barer_ollin_service_line_dlya_zashchity_kozhi_golovy_vo_vremya_okrashivaniya_150_ml",
+  "name": "Масло-барьер для защиты кожи головы во время окрашивания OLLIN SERVICE LINE, 150 мл",
+  "brand": "OLLIN",
+  "line": "SERVICE LINE",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/masla",
+  "price": 630,
+  "oldPrice": null,
+  "volume": "150 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "защищает",
+   "успокаивает"
+  ],
+  "hairType": [
+   "все типы"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/284/l7ds878na384kf1wjc801i021frd2i31/722439_copy.png"
+  ]
+ },
+ {
+  "id": 69,
+  "slug": "filler_dlya_volos_molekulyarnyy_vosstanavlivayushchiy_peptide_force_100_ml_kontsept_",
+  "name": "Филлер для волос молекулярный восстанавливающий PEPTIDE FORCE, 100 мл Концепт",
+  "brand": "CONCEPT",
+  "line": "PEPTIDE FORCE",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/masla",
+  "price": 509,
+  "oldPrice": null,
+  "volume": "100 мл",
+  "inStock": false,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "восстанавливает",
+   "придает плотность"
+  ],
+  "hairType": [
+   "поврежденные",
+   "ослабленные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/fd9/m5igsfbjifq6zq7a39z2ygytvk08m62b.jpg"
+  ]
+ },
+ {
+  "id": 70,
+  "slug": "nesmyvaemyy_krem_sprey_ollin_perfect_hair_15_v_1_250ml",
+  "name": "Спрей для волос 15 в 1 OLLIN PERFECT HAIR, 250 мл",
+  "brand": "OLLIN",
+  "line": "PERFECT HAIR",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/sprei_volos",
+  "price": 660,
+  "oldPrice": null,
+  "volume": "250 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "комплексный уход",
+   "облегчает расчесывание",
+   "термозащита"
+  ],
+  "hairType": [
+   "все типы"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/3c4/3c407f6136f4cf6f12c6dbfc35e8dba5.jpeg"
+  ]
+ },
+ {
+  "id": 71,
+  "slug": "sprey_termozashchita_dlya_volos_exito_daily_200_ml",
+  "name": "Спрей-термозащита для волос EXITO Daily 200 мл",
+  "brand": "EXITO",
+  "line": "DAILY",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/sprei_volos",
+  "price": 509,
+  "oldPrice": null,
+  "volume": "200 мл",
+  "inStock": true,
+  "hit": true,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "термозащита",
+   "защищает"
+  ],
+  "hairType": [
+   "все типы"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/79d/99vq1zqqrgr04nz6nwblh364pbwy2pi6.png"
+  ]
+ },
+ {
+  "id": 72,
+  "slug": "kebren_save_color_200_ml_krem_sprey_15_v_1_",
+  "name": "KEBREN SAVE COLOR 200 мл Крем-спрей 15 в 1",
+  "brand": "KEBREN",
+  "line": "SAVE COLOR",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/sprei_volos",
+  "price": 950,
+  "oldPrice": null,
+  "volume": "200 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "сохраняет цвет",
+   "комплексный уход"
+  ],
+  "hairType": [
+   "окрашенные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/1b4/4281maejpqslu65qx9h6nybswtka374i.jpg",
+   "https://sibcirulnik.ru/upload/iblock/9cf/m536aqwo4r2863wvpolf2r5pzfx562fd.jpg"
+  ]
+ },
+ {
+  "id": 73,
+  "slug": "sprey_dlya_pridaniya_obema_exito_volume_200_ml",
+  "name": "Спрей для придания объема EXITO Volume 200 мл",
+  "brand": "EXITO",
+  "line": "VOLUME",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/sprei_volos",
+  "price": 405,
+  "oldPrice": null,
+  "volume": "200 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": true,
+  "isNew": false,
+  "purpose": [
+   "придает объем"
+  ],
+  "hairType": [
+   "тонкие"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/645/stdtp6s5t80a4e1dsawyxk9assll3uy3.png"
+  ]
+ },
+ {
+  "id": 74,
+  "slug": "dvukhfaznyy_sprey_ukhod_250_ml_ambient_colorfix_",
+  "name": "Двухфазный спрей-уход, 250 мл AMBIENT Colorfix",
+  "brand": "TEFIA",
+  "line": "AMBIENT COLORFIX",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/sprei_volos",
+  "price": 1260,
+  "oldPrice": null,
+  "volume": "250 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "стабилизирует цвет",
+   "увлажняет"
+  ],
+  "hairType": [
+   "окрашенные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/5e1/8r4pojjqdhjimwr2ymbowrhwwmx8uqk6.webp",
+   "https://sibcirulnik.ru/upload/iblock/9a2/xzlt59mzm2ipb7z64d40pxzg9w5rv765.webp"
+  ]
+ },
+ {
+  "id": 75,
+  "slug": "tonik_sprey_dlya_volos_exito_keratin_200_ml",
+  "name": "Тоник-спрей для волос EXITO Keratin 200 мл",
+  "brand": "EXITO",
+  "line": "KERATIN",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/sprei_volos",
+  "price": 518,
+  "oldPrice": null,
+  "volume": "200 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "восстанавливает",
+   "тонизирует"
+  ],
+  "hairType": [
+   "поврежденные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/c65/2nqzek9lns1xmqd5z3qp3cm1lh6w337j.png"
+  ]
+ },
+ {
+  "id": 76,
+  "slug": "kebren_incredible_volume_200_ml_sprey_dlya_prikornevogo_obema_s_proteinami_risa_dlya_vsekh_tipov_vol",
+  "name": "KEBREN INCREDIBLE VOLUME 200 мл Спрей для прикорневого объема с протеинами риса для всех типов волос",
+  "brand": "KEBREN",
+  "line": "INCREDIBLE VOLUME",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/sprei_volos",
+  "price": 790,
+  "oldPrice": null,
+  "volume": "200 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "придает объем",
+   "придает плотность"
+  ],
+  "hairType": [
+   "тонкие",
+   "все типы"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/4bf/flmej9lr4l9bomvz1n1lqugzwyu9c34m.jpg",
+   "https://sibcirulnik.ru/upload/iblock/67c/2000_2000_140cd750bba9870f18aada2478b24840a/ol0jxl22h1fw0nel0fx6bdg2en12ng33.jpg",
+   "https://sibcirulnik.ru/upload/iblock/ee6/2000_2000_140cd750bba9870f18aada2478b24840a/z699tfxen03yqs5p284w0tutq928ol4l.jpg"
+  ]
+ },
+ {
+  "id": 77,
+  "slug": "sprey_uvlazhnyayushchiy_dlya_volos_exito_intensive_200_ml",
+  "name": "Спрей увлажняющий для волос EXITO Intensive 200 мл",
+  "brand": "EXITO",
+  "line": "INTENSIVE",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/sprei_volos",
+  "price": 356,
+  "oldPrice": null,
+  "volume": "200 мл",
+  "inStock": true,
+  "hit": true,
+  "recommend": false,
+  "sale": true,
+  "isNew": false,
+  "purpose": [
+   "увлажняет"
+  ],
+  "hairType": [
+   "сухие"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/23d/ye6doomb87qlvv8g44n8j3ss06v7dft6.png"
+  ]
+ },
+ {
+  "id": 78,
+  "slug": "kebren_hydra_therapy_240_ml_dvukhfaznyy_termozashchitnyy_multisprey_dlya_vsekh_tipov_volos_s_tregalo",
+  "name": "KEBREN HYDRA THERAPY 240 мл Двухфазный термозащитный мультиспрей для всех типов волос с трегалозой",
+  "brand": "KEBREN",
+  "line": "HYDRA THERAPY",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/sprei_volos",
+  "price": 1510,
+  "oldPrice": null,
+  "volume": "240 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "isNew": false,
+  "purpose": [
+   "термозащита",
+   "увлажняет",
+   "защищает"
+  ],
+  "hairType": [
+   "все типы"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/a2e/9aomr4hnz0o6rhcq79d3gs1flwcdg6w2.jpg",
+   "https://sibcirulnik.ru/upload/iblock/042/tga3w0l3wt9ezamwcg3nz4b4hk1qqegl.jpg"
+  ]
  }
 ]
