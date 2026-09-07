@@ -1,0 +1,1242 @@
+[
+ {
+  "id": 1,
+  "slug": "shampun_dlya_volos_s_ekstraktom_laminarii_ollin_salon_beauty_1000ml_",
+  "name": "Шампунь для волос с экстрактом ламинарии OLLIN SALON BEAUTY 1000мл",
+  "brand": "OLLIN",
+  "line": "SALON BEAUTY",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/shampuni",
+  "price": 850,
+  "oldPrice": null,
+  "volume": "1000 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "увлажняет",
+   "придает гладкость"
+  ],
+  "hairType": [
+   "все типы"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/b9e/yt284xzzp9y4nhe57o97ldnl7yl2lc1z/ollin_salon_beauty_shampoo_uvlazhnenie_i_gladkost.jpg"
+  ]
+ },
+ {
+  "id": 2,
+  "slug": "lipidnyy_shampun_dlya_volos_1000ml_ollin_professional_l_p_system_",
+  "name": "Липидный шампунь для волос 1000мл OLLIN PROFESSIONAL L&P SYSTEM",
+  "brand": "OLLIN",
+  "line": "L&P SYSTEM",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/shampuni",
+  "price": 1320,
+  "oldPrice": null,
+  "volume": "1000 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "восстанавливает",
+   "питает"
+  ],
+  "hairType": [
+   "сухие",
+   "поврежденные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/9bf/6dvra9v0017m88gqoqn7zvf9w9vw7t1g.jpg"
+  ]
+ },
+ {
+  "id": 3,
+  "slug": "kebren_hydra_therapy_300_ml_shampun_dlya_intensivnogo_uvlazhneniya_volos_s_tregalozoy_",
+  "name": "KEBREN HYDRA THERAPY 300 мл Шампунь для интенсивного увлажнения волос с трегалозой",
+  "brand": "KEBREN",
+  "line": "HYDRA THERAPY",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/shampuni",
+  "price": 770,
+  "oldPrice": null,
+  "volume": "300 мл",
+  "inStock": true,
+  "hit": true,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "увлажняет"
+  ],
+  "hairType": [
+   "сухие"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/745/379h42w4kdzon8o3mmftpovyhsrnhvav.jpg",
+   "https://sibcirulnik.ru/upload/iblock/918/8400cwzhwd5bop2k1kd3c0o46ncpjwei.jpg"
+  ]
+ },
+ {
+  "id": 4,
+  "slug": "shampun_dlya_okrashennykh_volos_s_ekstraktom_vinograda_ollin_salon_beauty_1000ml_",
+  "name": "Шампунь для окрашенных волос с экстрактом винограда OLLIN SALON BEAUTY 1000мл",
+  "brand": "OLLIN",
+  "line": "SALON BEAUTY",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/shampuni",
+  "price": 850,
+  "oldPrice": null,
+  "volume": "1000 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "сохраняет цвет",
+   "придает блеск"
+  ],
+  "hairType": [
+   "окрашенные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/658/5vvkzkwy9va9x217xl1w8xzmb6mu3ydr/ollin_salon_beauty_shampoo_yarkost_i_blesk.jpg"
+  ]
+ },
+ {
+  "id": 5,
+  "slug": "shampun_dlya_intensivnogo_vosstanovleniya_volos_my_1000_ml",
+  "name": "Шампунь для интенсивного восстановления волос TEFIA MYCARE, 1000 мл",
+  "brand": "TEFIA",
+  "line": "MYCARE",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/shampuni",
+  "price": 987,
+  "oldPrice": null,
+  "volume": "1000 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": true,
+  "sale": false,
+  "purpose": [
+   "восстанавливает"
+  ],
+  "hairType": [
+   "поврежденные",
+   "ослабленные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/c61/c6154aa936a4f2d28cd2c2be74c290d2.png"
+  ]
+ },
+ {
+  "id": 6,
+  "slug": "shampun_dlya_volos_s_ekstraktom_semyan_lna_ollin_salon_beauty_1000ml_",
+  "name": "Шампунь для волос с экстрактом семян льна OLLIN SALON BEAUTY 1000мл",
+  "brand": "OLLIN",
+  "line": "SALON BEAUTY",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/shampuni",
+  "price": 850,
+  "oldPrice": null,
+  "volume": "1000 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "питает",
+   "восстанавливает"
+  ],
+  "hairType": [
+   "сухие"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/1d6/4903r2r0721bh8na9qqsuiqtnmb6hjhd/ollin_salon_beauty_shampoo_pitanie_i_vosstanovlenie.jpg"
+  ]
+ },
+ {
+  "id": 7,
+  "slug": "shampun_dlya_vosstanovleniya_volos_exito_keratin_1000_ml",
+  "name": "Шампунь для восстановления волос EXITO Keratin 1000 мл",
+  "brand": "EXITO",
+  "line": "KERATIN",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/shampuni",
+  "price": 1053,
+  "oldPrice": null,
+  "volume": "1000 мл",
+  "inStock": true,
+  "hit": true,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "восстанавливает",
+   "разглаживает"
+  ],
+  "hairType": [
+   "поврежденные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/b0f/30c7v0dh9elwi2sc9541c16nogtbox3b.png"
+  ]
+ },
+ {
+  "id": 8,
+  "slug": "shampun_ollin_service_line_dlya_ezhednevnogo_primeneniya_ph_5_5_1000_ml",
+  "name": "Шампунь для волос для ежедневного применения p.H 5.5, OLLIN SERVICE LINE, 1000 мл",
+  "brand": "OLLIN",
+  "line": "SERVICE LINE",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/shampuni",
+  "price": 1010,
+  "oldPrice": null,
+  "volume": "1000 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "очищает",
+   "комплексный уход"
+  ],
+  "hairType": [
+   "все типы"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/74f/pgeyyhjl06qlm8b195d329hlb189w7rl/721999_copy.png"
+  ]
+ },
+ {
+  "id": 9,
+  "slug": "shampun_dlya_uvlazhneniya_i_pitaniya_volos_exito_intensive_1000_ml",
+  "name": "Шампунь для увлажнения и питания волос EXITO Intensive 1000 мл",
+  "brand": "EXITO",
+  "line": "INTENSIVE",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/shampuni",
+  "price": 873,
+  "oldPrice": null,
+  "volume": "1000 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": true,
+  "sale": false,
+  "purpose": [
+   "увлажняет",
+   "питает"
+  ],
+  "hairType": [
+   "сухие"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/e54/r17wox0f4klba9wrz1n9xl8e8sk4va7f.png"
+  ]
+ },
+ {
+  "id": 10,
+  "slug": "kebren_incredible_volume_1000_ml_shampun_dlya_pridaniya_obema_volosam_s_proteinami_risa_",
+  "name": "KEBREN INCREDIBLE VOLUME 1000 мл Шампунь для придания объема волосам с протеинами риса",
+  "brand": "KEBREN",
+  "line": "INCREDIBLE VOLUME",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/shampuni",
+  "price": 1730,
+  "oldPrice": null,
+  "volume": "1000 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "придает объем"
+  ],
+  "hairType": [
+   "тонкие"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/912/yfwn8mp126ymabvtvwdz5t98gfp70r7i.jpg",
+   "https://sibcirulnik.ru/upload/iblock/2ed/dfls92hia7c4ipwr44rs53b673sr21ay.jpg"
+  ]
+ },
+ {
+  "id": 11,
+  "slug": "plazma_dlya_stabilizatsii_protsedury_okrashivaniya_1000_ml",
+  "name": "Плазма для стабилизации процедуры окрашивания TEFIA SERVICE MYPOINT, 1000 мл",
+  "brand": "TEFIA",
+  "line": "MYPOINT SERVICE",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/balzamy_konditsionery_dlya_volos",
+  "price": 1607,
+  "oldPrice": null,
+  "volume": "1000 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "стабилизирует цвет",
+   "защищает"
+  ],
+  "hairType": [
+   "окрашенные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/0e9/desx9ko4srzmerl2khns0wbfq0aiu3sa/2022_10_08_15_23_17.png"
+  ]
+ },
+ {
+  "id": 12,
+  "slug": "lipidnyy_konditsioner_dlya_volos_1000ml_ollin_professional_l_p_system_",
+  "name": "Липидный кондиционер для волос 1000мл OLLIN PROFESSIONAL L&P SYSTEM",
+  "brand": "OLLIN",
+  "line": "L&P SYSTEM",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/balzamy_konditsionery_dlya_volos",
+  "price": 1320,
+  "oldPrice": null,
+  "volume": "1000 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "восстанавливает",
+   "питает"
+  ],
+  "hairType": [
+   "сухие",
+   "поврежденные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/cc8/4xgzs4ms95x6w7jxi07193efaxrg7k63.png",
+   "https://sibcirulnik.ru/upload/iblock/ccb/ltmydsnzgci6a6yeeymfk4mm7wgdhpjb.png",
+   "https://sibcirulnik.ru/upload/iblock/ef9/f1uziue2xngh6ufr0i9frncq0k13j1qa.png"
+  ]
+ },
+ {
+  "id": 13,
+  "slug": "konditsioner_dlya_volos_s_ekstraktom_laminarii_ollin_salon_beauty_1000ml",
+  "name": "Кондиционер для волос с экстрактом ламинарии OLLIN SALON BEAUTY, 1000 мл",
+  "brand": "OLLIN",
+  "line": "SALON BEAUTY",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/balzamy_konditsionery_dlya_volos",
+  "price": 850,
+  "oldPrice": null,
+  "volume": "1000 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "увлажняет",
+   "придает гладкость"
+  ],
+  "hairType": [
+   "все типы"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/a0c/jhat8ugavyvmbqdhk9zhchqkl5e3y5kv/ollin_salon_beauty_conditioner_uvlazhnenie_i_gladkost.jpg"
+  ]
+ },
+ {
+  "id": 14,
+  "slug": "konditsioner_dlya_okrashennykh_volos_s_maslom_vinogradnoy_kostochki_ollin_salon_beauty_1000ml_",
+  "name": "Кондиционер для окрашенных волос с маслом виноградной косточки OLLIN SALON BEAUTY, 1000 мл",
+  "brand": "OLLIN",
+  "line": "SALON BEAUTY",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/balzamy_konditsionery_dlya_volos",
+  "price": 850,
+  "oldPrice": null,
+  "volume": "1000 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "сохраняет цвет",
+   "придает блеск"
+  ],
+  "hairType": [
+   "окрашенные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/201/wqahvzxaw9eu7b285vrz1dmpnlln658z/ollin_salon_beauty_conditioner_yarkost_i_blesk.jpg"
+  ]
+ },
+ {
+  "id": 15,
+  "slug": "balzam_dlya_vosstanovleniya_volos_exito_keratin_1000_ml",
+  "name": "Бальзам для восстановления волос EXITO Keratin 1000 мл",
+  "brand": "EXITO",
+  "line": "KERATIN",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/balzamy_konditsionery_dlya_volos",
+  "price": 1116,
+  "oldPrice": null,
+  "volume": "1000 мл",
+  "inStock": true,
+  "hit": true,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "восстанавливает",
+   "разглаживает"
+  ],
+  "hairType": [
+   "поврежденные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/626/1x2f4j3580mnccbqestaj4r0wptf0v3g.png"
+  ]
+ },
+ {
+  "id": 16,
+  "slug": "balzam_dlya_okrashennykh_volos_my_1000_ml",
+  "name": "Бальзам для окрашенных волос TEFIA MYCARE, 1000 мл",
+  "brand": "TEFIA",
+  "line": "MYCARE",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/balzamy_konditsionery_dlya_volos",
+  "price": 1061,
+  "oldPrice": null,
+  "volume": "1000 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "сохраняет цвет",
+   "увлажняет"
+  ],
+  "hairType": [
+   "окрашенные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/ac7/ac731b9b47e99d352319efd2a0ba2093.png"
+  ]
+ },
+ {
+  "id": 17,
+  "slug": "balzam_rekonstruktor_nexxt_regeneratsiya_vitalizatsiya_vosstanovlenie_volos_vegan_prof_1000_ml",
+  "name": "Бальзам-реконструктор NEXXT: регенерация, витализация, восстановление волос Vegan prof 1000 мл",
+  "brand": "NEXXT",
+  "line": "VEGAN PROF",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/balzamy_konditsionery_dlya_volos",
+  "price": 410,
+  "oldPrice": null,
+  "volume": "1000 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": true,
+  "purpose": [
+   "восстанавливает",
+   "комплексный уход"
+  ],
+  "hairType": [
+   "поврежденные",
+   "ослабленные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/380/xw0c8s378v1fu0zs0akyml1ozwpewhrz.jpg"
+  ]
+ },
+ {
+  "id": 18,
+  "slug": "balzam_dlya_volos_s_maslom_semyan_lna_ollin_salon_beauty_1000ml",
+  "name": "Бальзам для волос с маслом семян льна OLLIN SALON BEAUTY 1000мл",
+  "brand": "OLLIN",
+  "line": "SALON BEAUTY",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/balzamy_konditsionery_dlya_volos",
+  "price": 850,
+  "oldPrice": null,
+  "volume": "1000 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "питает",
+   "восстанавливает"
+  ],
+  "hairType": [
+   "сухие"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/0eb/dynej1i4u08i3rrne6fcyddrio4zab18/ollin_salon_beauty_balm_pitanie_i_vosstanovlenie.jpg"
+  ]
+ },
+ {
+  "id": 19,
+  "slug": "konditsioner_kaaral_reale_vosstanavlivayushchiy_dlya_povrezhdennykh_volos_1000_ml",
+  "name": "Кондиционер для поврежденных волос восстанавливающий KAARAL PURIFY REALE, 1000 мл",
+  "brand": "KAARAL",
+  "line": "PURIFY REALE",
+  "category": "professionalnaya_kosmetika_dlya_volos/sredstva_dlya_ukhoda_za_volosami/balzamy_konditsionery_dlya_volos",
+  "price": 2820,
+  "oldPrice": null,
+  "volume": "1000 мл",
+  "inStock": true,
+  "hit": true,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "восстанавливает",
+   "питает"
+  ],
+  "hairType": [
+   "поврежденные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/572/f9nw9ynoak9sej2llatlmdauoodt5wpz/300ylj0oscqy5f3a7f0obdfhkk967tyy.jpg"
+  ]
+ },
+ {
+  "id": 20,
+  "slug": "mnogofunktsionalnyy_sprey_dlya_volos_20_v_1_250_ml",
+  "name": "Спрей для волос многофункциональный 20 в 1 TEFIA MY STYLE.UP, 250 мл",
+  "brand": "TEFIA",
+  "line": "STYLE.UP",
+  "category": "professionalnaya_kosmetika_dlya_volos/stayling/sprei_losony",
+  "price": 735,
+  "oldPrice": null,
+  "volume": "250 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": true,
+  "sale": false,
+  "purpose": [
+   "комплексный уход",
+   "термозащита"
+  ],
+  "hairType": [
+   "все типы"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/fe4/smjyqhch44ztg70f8zmuvzusr091f0pr/2022_11_21_20_21_40.png"
+  ]
+ },
+ {
+  "id": 21,
+  "slug": "lipidnyy_sprey_dlya_volos_200ml_ollin_professional_l_p_system_",
+  "name": "Липидный спрей для волос 200мл OLLIN PROFESSIONAL L&P SYSTEM",
+  "brand": "OLLIN",
+  "line": "L&P SYSTEM",
+  "category": "professionalnaya_kosmetika_dlya_volos/stayling/sprei_losony",
+  "price": 680,
+  "oldPrice": null,
+  "volume": "200 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "восстанавливает",
+   "защищает"
+  ],
+  "hairType": [
+   "сухие"
+  ],
+  "images": []
+ },
+ {
+  "id": 22,
+  "slug": "sprey_obem_ollin_style_morskaya_sol_250ml",
+  "name": "Спрей-объем для волос морская соль OLLIN STYLE, 250 мл",
+  "brand": "OLLIN",
+  "line": "STYLE",
+  "category": "professionalnaya_kosmetika_dlya_volos/stayling/sprei_losony",
+  "price": 630,
+  "oldPrice": null,
+  "volume": "250 мл",
+  "inStock": true,
+  "hit": true,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "придает объем",
+   "текстурирует"
+  ],
+  "hairType": [
+   "все типы"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/1f7/xra190fq20t7vwg0xqoftjfr6n0q3ko0/8-_2_.jpg"
+  ]
+ },
+ {
+  "id": 23,
+  "slug": "krem_dlya_vyushchikhsya_volos_my_250_ml",
+  "name": "Крем для вьющихся волос TEFIA MYCARE, 250 мл",
+  "brand": "TEFIA",
+  "line": "MYCARE",
+  "category": "professionalnaya_kosmetika_dlya_volos/stayling/kremy_dlya_volos",
+  "price": 620,
+  "oldPrice": null,
+  "volume": "250 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "разглаживает",
+   "увлажняет"
+  ],
+  "hairType": [
+   "вьющиеся",
+   "непослушные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/ae0/5v0u1q9gxobnw7o3igrdrs9o9w4f43f2/2022_11_21_20_20_16.png"
+  ]
+ },
+ {
+  "id": 24,
+  "slug": "termozashchitnyy_sprey_ollin_style_dlya_volos_250ml",
+  "name": "Спрей для волос с термозащитой OLLIN STYLE, 250 мл",
+  "brand": "OLLIN",
+  "line": "STYLE",
+  "category": "professionalnaya_kosmetika_dlya_volos/stayling/sprei_losony",
+  "price": 720,
+  "oldPrice": null,
+  "volume": "250 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": true,
+  "sale": false,
+  "purpose": [
+   "термозащита",
+   "защищает"
+  ],
+  "hairType": [
+   "все типы"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/986/w35decwbmqfvk4r5hrstmf10dqsltc7k/pd1djyoiun5lujwfz36p0x06n1drpyid.jpg"
+  ]
+ },
+ {
+  "id": 25,
+  "slug": "ollin_curl_hair_muss_dlya_sozdaniya_lokonov_150ml",
+  "name": "Мусс для создания локонов OLLIN CURL HAIR, 150 мл",
+  "brand": "OLLIN",
+  "line": "CURL HAIR",
+  "category": "professionalnaya_kosmetika_dlya_volos/stayling/penki_mussy",
+  "price": 600,
+  "oldPrice": null,
+  "volume": "150 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "фиксирует",
+   "моделирует"
+  ],
+  "hairType": [
+   "вьющиеся"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/05a/9g3dtzaadxlqiwfnzj28r73jd2pvezjz.jpg",
+   "https://sibcirulnik.ru/upload/iblock/25d/90mv80b8pg0kmbslnxh7w6mf1iexhw8f.webp",
+   "https://sibcirulnik.ru/upload/iblock/b7a/twqwgfl8cb5tnv4l16snv1wahodgn1u1.jpg"
+  ]
+ },
+ {
+  "id": 26,
+  "slug": "sukhoy_shampun_dlya_volos_ollin_perfect_hair_200ml",
+  "name": "Шампунь для волос сухой OLLIN PERFECT HAIR, 200 мл",
+  "brand": "OLLIN",
+  "line": "PERFECT HAIR",
+  "category": "professionalnaya_kosmetika_dlya_volos/stayling/sukhie_shampuni",
+  "price": 660,
+  "oldPrice": null,
+  "volume": "200 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "очищает",
+   "придает объем"
+  ],
+  "hairType": [
+   "жирные",
+   "все типы"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/305/p77xtnci804vg8iy9sved4lto310g53r/ZUCYjqVw.jpeg"
+  ]
+ },
+ {
+  "id": 27,
+  "slug": "pudra_ollin_style_dlya_prikornevogo_obyema_volos_silnoy_fiksatsii_10g",
+  "name": "Пудра для прикорневого объема волос OLLIN STYLE, 10 гр",
+  "brand": "OLLIN",
+  "line": "STYLE",
+  "category": "professionalnaya_kosmetika_dlya_volos/stayling/pudry",
+  "price": 1200,
+  "oldPrice": null,
+  "volume": "10 гр",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "придает объем",
+   "фиксирует"
+  ],
+  "hairType": [
+   "тонкие"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/3bd/0wn6eeeo5hmeggau1skffena0u0wokdr/STRONG_HOLD_POWDER_Pudra_dlya_prikornevogo_obema_volos_silnoy_fiksacii_ot_kompanii_Ollin_.png"
+  ]
+ },
+ {
+  "id": 28,
+  "slug": "teksturiruyushchiy_sprey_s_morskoy_solyu_silnoy_fiksatsii_my_250_ml",
+  "name": "Спрей для волос с морской солью сильной фиксации TEFIA STYLE.UP, 250 мл",
+  "brand": "TEFIA",
+  "line": "STYLE.UP",
+  "category": "professionalnaya_kosmetika_dlya_volos/stayling/sprei_losony",
+  "price": 546,
+  "oldPrice": null,
+  "volume": "250 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": true,
+  "purpose": [
+   "фиксирует",
+   "текстурирует"
+  ],
+  "hairType": [
+   "все типы"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/dac/dac0bbafc4d1ea2ffa451d812bf020d2.png"
+  ]
+ },
+ {
+  "id": 29,
+  "slug": "sprey_dlya_prikornevogo_obema_loson_hyper_root_boost_spray_",
+  "name": "Спрей для прикорневого объема KAARAL STYLE PERFETTO, 250 мл",
+  "brand": "KAARAL",
+  "line": "STYLE PERFETTO",
+  "category": "professionalnaya_kosmetika_dlya_volos/stayling/sprei_losony",
+  "price": 1970,
+  "oldPrice": null,
+  "volume": "250 мл",
+  "inStock": true,
+  "hit": true,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "придает объем",
+   "фиксирует"
+  ],
+  "hairType": [
+   "тонкие"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/7f1/qz9f828m4jlpenuqjybq95zbpspgisrv/1.jpg"
+  ]
+ },
+ {
+  "id": 30,
+  "slug": "ollin_smooth_hair_termozashchitnyy_razglazhivayushchiy_sprey_150ml",
+  "name": "Спрей для волос разглаживающий с термозащитой OLLIN SMOOTH HAIR, 150 мл",
+  "brand": "OLLIN",
+  "line": "SMOOTH HAIR",
+  "category": "professionalnaya_kosmetika_dlya_volos/stayling/sprei_losony",
+  "price": 630,
+  "oldPrice": null,
+  "volume": "150 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "разглаживает",
+   "термозащита"
+  ],
+  "hairType": [
+   "непослушные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/a7a/bvms25yadqhs3aelk7d54mv0d83i7ayp/39064.450x0.jpg"
+  ]
+ },
+ {
+  "id": 31,
+  "slug": "gel_dlya_dusha_uvlazhnyayushchiy_s_ekstraktami_morskikh_vodorosley_250_ml_dozator",
+  "name": "Гель для душа \"Увлажняющий\" с экстрактами морских водорослей 250 мл (дозатор)",
+  "brand": "DOMIX",
+  "line": "ORGANIC",
+  "category": "kosmetika_dlya_tela/geli_dlya_dusha",
+  "price": 168,
+  "oldPrice": null,
+  "volume": "250 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "очищает",
+   "увлажняет"
+  ],
+  "hairType": [],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/396/k1ooz2zbd1v39e1f6lbr1rcb6ud0qdj6/2022_12_04_13_55_11.png"
+  ]
+ },
+ {
+  "id": 32,
+  "slug": "gel_dlya_dusha_osvezhayushchiy_s_ekstraktami_myaty_i_romashki_250_ml_dozator",
+  "name": "Гель для душа \"Освежающий\" с экстрактами мяты и ромашки 250 мл (дозатор)",
+  "brand": "DOMIX",
+  "line": "ORGANIC",
+  "category": "kosmetika_dlya_tela/geli_dlya_dusha",
+  "price": 160,
+  "oldPrice": null,
+  "volume": "250 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "очищает",
+   "освежает/охлаждает"
+  ],
+  "hairType": [],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/685/nva2rg6dd2ffd93twki2iw3lvxnjgxct/2022_12_04_13_54_17.png"
+  ]
+ },
+ {
+  "id": 33,
+  "slug": "gel_dlya_dusha_energeticheskiy_s_ekstraktami_aloe_i_konskogo_kashtana_250_ml_dozator",
+  "name": "Гель для душа \"Энергетический\" с экстрактами алоэ и конского каштана 250 мл (дозатор)",
+  "brand": "DOMIX",
+  "line": "ORGANIC",
+  "category": "kosmetika_dlya_tela/geli_dlya_dusha",
+  "price": 168,
+  "oldPrice": null,
+  "volume": "250 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "очищает",
+   "тонизирует"
+  ],
+  "hairType": [],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/cac/06224qwk62s26vmead2l03ifz73cevmd/2022_12_04_13_52_07.png"
+  ]
+ },
+ {
+  "id": 34,
+  "slug": "splesh_syvorotka_dlya_litsa_lifting_effekt_30_ml_20_aravia_professional",
+  "name": "Сплэш-сыворотка для лица лифтинг-эффект, 30 мл/20 \"ARAVIA Professional\"",
+  "brand": "ARAVIA PROFESSIONAL",
+  "line": "",
+  "category": "kosmetika_dlya_litsa/syvorotki",
+  "price": 909,
+  "oldPrice": null,
+  "volume": "30 мл",
+  "inStock": false,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "омолаживает"
+  ],
+  "hairType": [],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/564/zcybyldlet7v61k3yghnic3hjg3tun9o/aravia42.webp"
+  ]
+ },
+ {
+  "id": 35,
+  "slug": "nabor_dlya_dvoynogo_uvlazh_volos_shampun_uvlazhnyayushchiy_250ml_kond_dvoynoe_uvlazhnenie_200ml_olli",
+  "name": "НАБОР ДЛЯ ДВОЙНОГО УВЛАЖ. ВОЛОС (Шампунь увлажняющий 250мл, Конд. двойное увлажнение 200мл) OLLIN",
+  "brand": "OLLIN",
+  "line": "SALON BEAUTY",
+  "category": "podarki_dlya_sebya_i_blizkikh_1/podarochnye_nabory_1",
+  "price": 499,
+  "oldPrice": 750,
+  "volume": "450 мл",
+  "inStock": true,
+  "hit": true,
+  "recommend": true,
+  "sale": true,
+  "purpose": [
+   "увлажняет",
+   "комплексный уход"
+  ],
+  "hairType": [
+   "сухие"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/3c5/y6yqcwa2pye0hty825t26tez1zym70hx.png"
+  ]
+ },
+ {
+  "id": 36,
+  "slug": "nabor_dlya_volos_kompleksnoe_vosstanovlenie_shampun_250ml_konditsioner_200ml_syvorotka_50ml",
+  "name": "НАБОР ДЛЯ ВОЛОС КОМПЛЕКСНОЕ ВОССТАНОВЛЕНИЕ (Шампунь 250мл, Кондиционер 200мл, Сыворотка 50мл)",
+  "brand": "OLLIN",
+  "line": "SALON BEAUTY",
+  "category": "podarki_dlya_sebya_i_blizkikh_1/podarochnye_nabory_1",
+  "price": 799,
+  "oldPrice": 1150,
+  "volume": "500 мл",
+  "inStock": true,
+  "hit": true,
+  "recommend": false,
+  "sale": true,
+  "purpose": [
+   "восстанавливает",
+   "комплексный уход"
+  ],
+  "hairType": [
+   "поврежденные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/0f5/xox4hm24war7s4w5fr37jn8r6tlqa5hs.png"
+  ]
+ },
+ {
+  "id": 37,
+  "slug": "osvetlyayushchiy_poroshok_belogo_tsveta_ollin_blond_performance_500_gr",
+  "name": "Порошок для осветления волос OLLIN PERFORMANCE белый, 500 г",
+  "brand": "OLLIN",
+  "line": "OLLIN PERFORMANCE",
+  "category": "professionalnaya_kosmetika_dlya_volos/okrashivanie_volos/osvetlyayushchie_poroshki",
+  "price": 1350,
+  "oldPrice": null,
+  "volume": "500 г",
+  "inStock": true,
+  "hit": true,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "осветляет"
+  ],
+  "hairType": [],
+  "palette": [
+   "бесцветный"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/130/13098857ace1ea9514742a60ffbcc60b.jpeg"
+  ]
+ },
+ {
+  "id": 38,
+  "slug": "osvetlyayushchiy_poroshok_exito_super_blond_blue_500_g",
+  "name": "Осветляющий порошок EXITO SUPER BLOND BLUE 500 г",
+  "brand": "EXITO",
+  "line": "BLEACHING POWDER",
+  "category": "professionalnaya_kosmetika_dlya_volos/okrashivanie_volos/osvetlyayushchie_poroshki",
+  "price": 1737,
+  "oldPrice": null,
+  "volume": "500 г",
+  "inStock": true,
+  "hit": true,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "осветляет",
+   "нейтрализует желтый пигмент"
+  ],
+  "hairType": [],
+  "palette": [
+   "синие"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/dfd/j71qtdel18y4dc8vcbmzc22dhz5wx5kv.png"
+  ]
+ },
+ {
+  "id": 39,
+  "slug": "10_43_permanentnaya_krem_kraska_dlya_volos_svetlyy_blondin_medno_zolotistyy_100_ml_exito",
+  "name": "10.43 Перманентная крем-краска для волос светлый блондин медно-золотистый 100 мл EXITO",
+  "brand": "EXITO",
+  "line": "PROFESSIONAL HAIRCOLOR",
+  "category": "professionalnaya_kosmetika_dlya_volos/okrashivanie_volos/kraski",
+  "price": 486,
+  "oldPrice": null,
+  "volume": "100 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": true,
+  "sale": false,
+  "purpose": [
+   "окрашивание"
+  ],
+  "hairType": [
+   "окрашенные"
+  ],
+  "palette": [
+   "медные",
+   "золотистые"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/fa5/szks1iz1vj72e10xjgo77sgunp6xdi26.jpg"
+  ]
+ },
+ {
+  "id": 40,
+  "slug": "korrektor_tsveta_ollin_service_line_2_100ml",
+  "name": "Корректор цвета OLLIN SERVICE LINE, 2*100мл",
+  "brand": "OLLIN",
+  "line": "SERVICE LINE",
+  "category": "professionalnaya_kosmetika_dlya_volos/okrashivanie_volos/smyvki_kraski",
+  "price": 630,
+  "oldPrice": null,
+  "volume": "2×100 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "удаление краски",
+   "преобразовывает"
+  ],
+  "hairType": [
+   "окрашенные"
+  ],
+  "palette": [
+   "бесцветный"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/f6b/vghy2u6jss2yslvvrglky1c36em8z3uy/corrector_2kh100.png"
+  ]
+ },
+ {
+  "id": 41,
+  "slug": "okislitelnaya_emulsiya_60_ml_kondor",
+  "name": "Окислитель KONDOR FAST SHADE DEVELOPER, 60 мл",
+  "brand": "KONDOR",
+  "line": "FAST SHADE DEVELOPER",
+  "category": "professionalnaya_kosmetika_dlya_volos/okrashivanie_volos/okisliteli_kraski",
+  "price": 235,
+  "oldPrice": null,
+  "volume": "60 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": true,
+  "purpose": [
+   "окрашивание"
+  ],
+  "hairType": [
+   "все типы"
+  ],
+  "palette": [
+   "бесцветный"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/49c/49cdb96bf2c413ee28a55afe18eeda6d.png"
+  ]
+ },
+ {
+  "id": 42,
+  "slug": "3_0_permanentnaya_krem_kraska_dlya_volos_temnyy_shaten_100_ml_exito",
+  "name": "3.0 Перманентная крем-краска для волос темный шатен 100 мл EXITO",
+  "brand": "EXITO",
+  "line": "PROFESSIONAL HAIRCOLOR",
+  "category": "professionalnaya_kosmetika_dlya_volos/okrashivanie_volos/kraski",
+  "price": 486,
+  "oldPrice": null,
+  "volume": "100 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "окрашивание"
+  ],
+  "hairType": [
+   "окрашенные"
+  ],
+  "palette": [
+   "коричневые"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/d66/bfvi42ffbr8plqhb0egla85f5yfxw0ii.jpg"
+  ]
+ },
+ {
+  "id": 43,
+  "slug": "0_0a_permanentnaya_krem_kraska_korrektor_dlya_rassvetleniya_urovnya_tona_mypoint",
+  "name": "Крем-краска перманентная для волос TEFIA MYPOINT корректор 0,0А, 60 мл",
+  "brand": "TEFIA",
+  "line": "MYPOINT",
+  "category": "professionalnaya_kosmetika_dlya_volos/okrashivanie_volos/kraski",
+  "price": 305,
+  "oldPrice": null,
+  "volume": "60 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "осветляет",
+   "преобразовывает"
+  ],
+  "hairType": [
+   "все типы"
+  ],
+  "palette": [
+   "нейтральныесерый"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/b09/b09ee75a80995010e76500a01929c287.png"
+  ]
+ },
+ {
+  "id": 44,
+  "slug": "silver_korrektor_serebristyy_100_ml_aaa",
+  "name": "Краска для волос корректор KAARAL AAA серебристый SILVER, 100 мл",
+  "brand": "KAARAL",
+  "line": "AAA",
+  "category": "professionalnaya_kosmetika_dlya_volos/okrashivanie_volos/kraski",
+  "price": 680,
+  "oldPrice": null,
+  "volume": "100 мл",
+  "inStock": true,
+  "hit": true,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "нейтрализует желтый пигмент",
+   "тонирующий"
+  ],
+  "hairType": [
+   "окрашенные"
+  ],
+  "palette": [
+   "серый"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/152/1r08fqrlxnegb12khjvgih7f40u5uavn/AAA_haircolor.jpg"
+  ]
+ },
+ {
+  "id": 45,
+  "slug": "5_81_gel_kraska_svetlyy_bryunet_korichnevo_pepelnyy_60_ml_mypoint",
+  "name": "Гель-краска для волос TEFIA MYPOINT TONE ON TONE светлый брюнет коричнево-пепельный 5.81, 60 мл",
+  "brand": "TEFIA",
+  "line": "MYPOINT TONE ON TONE",
+  "category": "professionalnaya_kosmetika_dlya_volos/okrashivanie_volos/kraski",
+  "price": 473,
+  "oldPrice": null,
+  "volume": "60 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": true,
+  "sale": false,
+  "purpose": [
+   "тонирующий",
+   "стабилизация цвета"
+  ],
+  "hairType": [
+   "окрашенные"
+  ],
+  "palette": [
+   "коричневые",
+   "пепельные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/f43/ng06nemu90c66b1x3nb9qfixebvt1sos/MYPOINT-TONE-ON-TONE.jpg"
+  ]
+ },
+ {
+  "id": 46,
+  "slug": "6_1_permanentnaya_krem_kraska_dlya_volos_temno_rusyy_pepelnyy_100_ml_exito",
+  "name": "6.1 Перманентная крем-краска для волос темно-русый пепельный 100 мл EXITO",
+  "brand": "EXITO",
+  "line": "PROFESSIONAL HAIRCOLOR",
+  "category": "professionalnaya_kosmetika_dlya_volos/okrashivanie_volos/kraski",
+  "price": 486,
+  "oldPrice": null,
+  "volume": "100 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "окрашивание"
+  ],
+  "hairType": [
+   "окрашенные"
+  ],
+  "palette": [
+   "русые",
+   "пепельные"
+  ],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/c16/9ocg5ergxp2jd9qkkhydu0v5icb1jtpq.jpg"
+  ]
+ },
+ {
+  "id": 47,
+  "slug": "krem_parafin_natural_s_molochnymi_proteinami_i_maslom_khlopka_300_ml",
+  "name": "Крем-парафин Natural с молочными протеинами и маслом хлопка ARAVIA, 300 мл",
+  "brand": "ARAVIA PROFESSIONAL",
+  "line": "ПАРАФИНОТЕРАПИЯ",
+  "category": "kosmetika_dlya_ruk_i_nog/manikyur_i_pedikyur/parafinoterapiya",
+  "price": 703,
+  "oldPrice": null,
+  "volume": "300 мл",
+  "inStock": true,
+  "hit": true,
+  "recommend": false,
+  "sale": false,
+  "purpose": [
+   "для интенсивного ухода",
+   "увлажняет"
+  ],
+  "hairType": [],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/c11/vz37p24u8yentzzg4nfuvja882te1pr7/araviya-krem-parafin.jpg"
+  ]
+ },
+ {
+  "id": 48,
+  "slug": "lampochka_zapasnaya_dlya_lampy_12_vatt_mod_uv_6w_365_nm_runail",
+  "name": "Лампочка запасная для лампы 12 ватт к модели UV-6W 365 nm RUNAIL",
+  "brand": "RUNAIL",
+  "line": "",
+  "category": "kosmetika_dlya_ruk_i_nog/manikyur_i_pedikyur/apparaty_dlya_manikyura_pedikyura",
+  "price": 121,
+  "oldPrice": null,
+  "volume": "",
+  "inStock": true,
+  "hit": false,
+  "recommend": false,
+  "sale": true,
+  "purpose": [
+   "комплексный уход"
+  ],
+  "hairType": [],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/318/31875431028e102ae655dac0224b040c.jpeg"
+  ]
+ },
+ {
+  "id": 49,
+  "slug": "krem_dlya_ruk_uvlazhnyayushchiy_s_sokom_aloe_myatnym_maslom_i_serebrom_domix_200ml",
+  "name": "Крем для рук увлажняющий сок алоэ и мятное масло DOMIX, 200 мл",
+  "brand": "DOMIX",
+  "line": "PROFESSIONAL",
+  "category": "kosmetika_dlya_ruk_i_nog/kremy_dlya_ruk",
+  "price": 199,
+  "oldPrice": null,
+  "volume": "200 мл",
+  "inStock": true,
+  "hit": false,
+  "recommend": true,
+  "sale": false,
+  "purpose": [
+   "увлажняет",
+   "освежает/охлаждает"
+  ],
+  "hairType": [],
+  "images": [
+   "https://sibcirulnik.ru/upload/iblock/589/589c083ab317206f6b824a9240343f86.jpeg"
+  ]
+ }
+]

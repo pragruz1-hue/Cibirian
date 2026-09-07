@@ -1,0 +1,303 @@
+{
+  "roots": [
+    {
+      "slug": "professionalnaya_kosmetika_dlya_volos",
+      "name": "Профессиональная косметика для волос",
+      "shortName": "Косметика для волос",
+      "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/ad5/62gjahcjhp7lsd9v2ypm6pvfv540n3u3/120_120_0/ukhod_za_volosami.png",
+      "title": "Профессиональная косметика для волос купить с доставкой",
+      "children": [
+        {
+          "slug": "sredstva_dlya_ukhoda_za_volosami",
+          "name": "Средства для ухода за волосами",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/dda/ocdy3jbm3lif05oinvr2sbw03s6b1uxq/120_120_0/sredstva-po-ukhodu.png",
+          "count": 644,
+          "children": [
+            {
+              "slug": "shampuni",
+              "name": "Шампуни",
+              "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/904/40_40_0/8w0732uehgpfbgs032l5fuudts1s7f8o.jpg"
+            },
+            {
+              "slug": "balzamy_konditsionery_dlya_volos",
+              "name": "Бальзамы, кондиционеры",
+              "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/73d/40_40_0/8qvvj9utn7h0bjf483zv63o80xhwn3xf.jpg"
+            },
+            {
+              "slug": "maski_dlya_volos",
+              "name": "Маски",
+              "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/5ef/40_40_0/nha9sdn46axfqjrv6mdlj02g2nj4eyjw.jpg"
+            },
+            {
+              "slug": "losony_mussy_dlya_volos",
+              "name": "Лосьоны, муссы",
+              "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/4ff/40_40_0/21mnmjkre1q1z2dnmtbv6t88fx3as66e.jpg"
+            },
+            {
+              "slug": "masla",
+              "name": "Масла",
+              "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/e6f/40_40_0/w7d1q6ballnto9vwzflz1wkn3kb6gix0.jpg"
+            },
+            {
+              "slug": "sprei_volos",
+              "name": "Спреи",
+              "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/ba3/40_40_0/elx77upvsvp1mgrsu9dpl9uc0hf13rma.jpg"
+            },
+            {
+              "slug": "syvorotki_flyuidy_kremy",
+              "name": "Сыворотки, флюиды, кремы",
+              "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/771/40_40_0/0fc0ed3sxfhws356pf6mzkbwpcuo9x02.jpg"
+            },
+            {
+              "slug": "pilingi_skraby",
+              "name": "Пилинги, скрабы",
+              "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/f35/40_40_0/xbnpq53qdugfksn2ay20yx3g11gb2jar.jpg"
+            },
+            {
+              "slug": "ampuly_dlya_volos",
+              "name": "Ампулы",
+              "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/753/40_40_0/qdikmu8yaf26tqy1uuxu4bbpdkvo70se.jpg"
+            },
+            {
+              "slug": "kosmetika_dlya_muzhchin",
+              "name": "Косметика для мужчин",
+              "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/fdc/40_40_0/zjgbwohp8sfg3ria7blusuyg6hdmcael.jpg"
+            },
+            {
+              "slug": "nabory_dlya_ukhoda_za_volosami",
+              "name": "Наборы",
+              "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/db2/40_40_0/6qjz9sgq9bfq113jhv2amvw80bb258ws.png"
+            }
+          ]
+        },
+        {
+          "slug": "okrashivanie_volos",
+          "name": "Окрашивание",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/1ee/qmt43i3tnaas07s222a9pq0nb6fcq96n/120_120_0/okrashivanie.png",
+          "children": [
+            {
+              "slug": "kraski",
+              "name": "Краски для волос"
+            },
+            {
+              "slug": "okisliteli_kraski",
+              "name": "Окислители"
+            },
+            {
+              "slug": "osvetlyayushchie_poroshki",
+              "name": "Осветляющие порошки"
+            },
+            {
+              "slug": "smyvki_kraski",
+              "name": "Смывки, корректоры"
+            },
+            {
+              "slug": "ottenochnye_sredstva",
+              "name": "Оттеночные средства"
+            },
+            {
+              "slug": "prepigmentatory",
+              "name": "Препигментаторы"
+            }
+          ]
+        },
+        {
+          "slug": "stayling",
+          "name": "Стайлинг",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/9f8/ikyl6dla24r60f53a4p3y26w1yj0uig5/120_120_0/ukladka-stayling.png",
+          "children": [
+            {
+              "slug": "sprei_losony",
+              "name": "Спреи, лосьоны"
+            },
+            {
+              "slug": "penki_mussy",
+              "name": "Пенки, муссы"
+            },
+            {
+              "slug": "kremy_dlya_volos",
+              "name": "Кремы для волос"
+            },
+            {
+              "slug": "sukhie_shampuni",
+              "name": "Сухие шампуни"
+            },
+            {
+              "slug": "pudry",
+              "name": "Пудры"
+            },
+            {
+              "slug": "laki",
+              "name": "Лаки"
+            },
+            {
+              "slug": "vaksy_geli_pasty",
+              "name": "Ваксы, гели, пасты"
+            }
+          ]
+        },
+        {
+          "slug": "khimicheskaya_zavivka_1",
+          "name": "Химическая завивка",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/923/26mo5u229o9dgq3h5ukhbl5mrizkh35q/120_120_0/khimicheskaya-zavivka.png"
+        },
+        {
+          "slug": "elektropribory",
+          "name": "Электроприборы",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/91e/120_120_0/itx3oqzjbysphqmk3qkn6d79c1p9o9ub.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "kosmetika_dlya_litsa",
+      "name": "Косметика для лица",
+      "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/5db/f7hv25s5ghxo76pfajd3sm5xz0zh93kq/120_120_0/sredstva-dlya-litsa.png",
+      "title": "Косметика для лица заказать с доставкой",
+      "children": [
+        {
+          "slug": "sredstva_dlya_umyvaniya",
+          "name": "Средства для умывания",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/438/swr7ix4p44o83y871v8cgzlkwgt00m01/40_40_0/vsyo_dlya_umivaniya_litsa.png"
+        },
+        {
+          "slug": "kremy",
+          "name": "Кремы",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/9b4/hc6jsuy6o6nq5walth5pls8j7w6iax0m/40_40_0/krem_dlya_litsa.png"
+        },
+        {
+          "slug": "maski_dlya_litsa",
+          "name": "Маски",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/59e/sghso5ciaagp76754mfx59jf6plv3p8q/40_40_0/maski_dlya_litsa.png"
+        },
+        {
+          "slug": "skraby",
+          "name": "Скрабы",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/b7d/65vh6i4w7k6abhz58eny4kliegc7plml/40_40_0/skrab_dlya_litsa.png"
+        },
+        {
+          "slug": "syvorotki",
+          "name": "Сыворотки",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/bd5/ko8q6v20v5y0jrfs341d4ga5motxvho5/40_40_0/syvorotka_dlya_litsa.png"
+        },
+        {
+          "slug": "toniki_losony",
+          "name": "Тоники, лосьоны",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/1ff/gsh0brpuzhu6m2rm6g30vb35zx5y6por/40_40_0/tonik_dlya_litsa.png"
+        },
+        {
+          "slug": "flyuidy",
+          "name": "Флюиды",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/986/u9sblq8j9ogqgdtdqshn8xdpvi32h9dz/40_40_0/fluid_dlya_litsa.png"
+        },
+        {
+          "slug": "pilingi",
+          "name": "Пилинги",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/889/pdeas23qzmqhh80hob7afduyni9qzrob/40_40_0/piling_dlya_litsa.png"
+        },
+        {
+          "slug": "karboksiterapiya",
+          "name": "Карбокситерапия",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/ca8/2t5zwd5xh81iqy9lo6q27h7fcuyshqrj/40_40_0/carboxiterapia.png"
+        },
+        {
+          "slug": "dekorativnaya_kosmetika",
+          "name": "Декоративная косметика",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/4df/bz51tdyzv4ply1dcbu28ztrnade0vf7h/40_40_0/Ikonka-Dek-kosmetika.jpg"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "slug": "kosmetika_dlya_tela",
+      "name": "Косметика для тела",
+      "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/b33/dj92mckippvk2f5vknkyurntqhiupbi6/120_120_0/korrektsiya-figury.png",
+      "children": [
+        {
+          "slug": "kremy_1",
+          "name": "Кремы",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/501/d74n004vgaeyawsbtid2goi4ka7sxueq/40_40_0/krem_dlya_tela.png"
+        },
+        {
+          "slug": "skraby_1",
+          "name": "Скрабы",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/424/wjorsj8g1y1a8nkvh2iuspsw81xdn7y4/40_40_0/skrab_dlya_tela.png"
+        },
+        {
+          "slug": "obertyvaniya",
+          "name": "Обертывания",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/aeb/xrkudd35qgdzwgrghuuahu42vjnn8qfy/40_40_0/obertivanie_dlya_tela.png"
+        },
+        {
+          "slug": "masla_1",
+          "name": "Масла",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/44d/xmohia3rwy45x5x334wgljj50z17v1j1/40_40_0/maslo_dlya_tela_antitsellulitnaya.png"
+        },
+        {
+          "slug": "geli_dlya_dusha",
+          "name": "Гели для душа",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/adf/lq09qba21u81zxg4irdtafmyhlviztf5/40_40_0/dlya-dusha.png"
+        }
+      ],
+      "count": 5
+    },
+    {
+      "slug": "kosmetika_dlya_ruk_i_nog",
+      "name": "Косметика для рук и ног",
+      "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/ae8/mq1bezdvvh87276vnn2ysfgt6qkwrhib/120_120_0/ukhod-za-rukami-i-nogami.png",
+      "children": [
+        {
+          "slug": "kremy_dlya_ruk",
+          "name": "Кремы для рук",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/986/y8ubnwqde6vdwcw4dam2c429ig30ioen/40_40_0/krem_dlya_ruk.png"
+        },
+        {
+          "slug": "kremy_dlya_nog",
+          "name": "Кремы для ног",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/859/isbhonuz3wzr3tnpbki2lr0z3uyz28r0/40_40_0/krem_dlya_nog.png"
+        },
+        {
+          "slug": "manikyur_i_pedikyur",
+          "name": "Маникюр и педикюр",
+          "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/307/jqo3gssoz4z35x53h8bzj0yctthh9y81/40_40_0/snyatie-i-razbavlenie.png",
+          "children": [
+            {
+              "slug": "parafinoterapiya",
+              "name": "Парафинотерапия"
+            },
+            {
+              "slug": "apparaty_dlya_manikyura_pedikyura",
+              "name": "Аппараты для маникюра и педикюра"
+            }
+          ]
+        }
+      ],
+      "count": 5
+    },
+    {
+      "slug": "podarki_dlya_sebya_i_blizkikh_1",
+      "name": "Подарки для себя и близких",
+      "image": "https://sibcirulnik.ru/upload/iblock/483/5m00kaomuoiucv14fdnc8h1qch19t4cm.png",
+      "children": [
+        {
+          "slug": "podarochnye_nabory_1",
+          "name": "Подарочные наборы"
+        }
+      ]
+    },
+    {
+      "slug": "aksessuary_dlya_masterov",
+      "name": "Аксессуары для мастеров",
+      "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/c4c/nob5n13b9h2qhkh41vkxj6qfsjckfrm8/120_120_0/aksessuary.png"
+    },
+    {
+      "slug": "sale_",
+      "name": "SALE %",
+      "image": "https://sibcirulnik.ru/upload/iblock/d11/hbl4vrc80gs1ai8h387w1u5vzg1uae38.png"
+    },
+    {
+      "slug": "elektropribory_1",
+      "name": "Электроприборы",
+      "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/15b/120_120_0/wq1864zgmwvf83uem3rs1ux2mih3cock.jpg"
+    }
+  ]
+}

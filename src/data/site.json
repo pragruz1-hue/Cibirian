@@ -1,0 +1,87 @@
+{
+  "name": "Сибирский цирюльник",
+  "legalName": "Интернет-магазин «Сибирский цирюльник»",
+  "logo": "https://sibcirulnik.ru/upload/CLite/e05/twz2a3epzc8kki0fcsz912qlsi6rfp5o/logo_sbc.png",
+  "domain": "sibcirulnik.ru",
+  "phones": [
+    { "label": "+7 (913) 450-02-49", "href": "tel:+79134500249" },
+    { "label": "8 (800) 250-36-32", "href": "tel:88002503632", "note": "звонок по России бесплатный" }
+  ],
+  "cities": [
+    "Анжеро-Судженск",
+    "Армавир",
+    "Барабинск",
+    "Барнаул",
+    "Белово",
+    "Бердск",
+    "Березовский",
+    "Бийск",
+    "Кемерово",
+    "Краснодар",
+    "Ленинск-Кузнецкий",
+    "Мариинск",
+    "Междуреченск",
+    "Новокузнецк",
+    "Новороссийск",
+    "Новосибирск",
+    "Полысаево",
+    "Прокопьевск",
+    "Северск",
+    "Томск"
+  ],
+  "defaultCity": "Новосибирск",
+  "topNav": [
+    { "label": "Главная", "href": "/" },
+    { "label": "Каталог", "href": "/catalog" },
+    { "label": "Акции", "href": "/sales" },
+    { "label": "Контакты", "href": "/contacts" },
+    { "label": "Услуги", "href": "/services" },
+    { "label": "Бренды", "href": "/brands" },
+    { "label": "Отзывы", "href": "/company/reviews" },
+    { "label": "Компания", "href": "/company" },
+    { "label": "Лицензии", "href": "/company/licenses" },
+    { "label": "Документы", "href": "/company/docs" },
+    { "label": "Реквизиты", "href": "/info/requisites" },
+    { "label": "Блог", "href": "/blog" },
+    { "label": "Обзоры", "href": "/landings" }
+  ],
+  "brands": [
+    { "name": "OLLIN", "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/e18/wiv609ljykf631y71l19ho3sn6xdxymt/200_80_0/exxito.png" },
+    { "name": "EXITO", "image": "https://sibcirulnik.ru/upload/iblock/7c5/smsz49cxaf1cysw08gmcoyfp77g0ei7v.png" },
+    { "name": "KAARAL", "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/c44/200_80_0/xyhiwscipypkq3nvetit3xsqnz42f118.jpeg" },
+    { "name": "TEFIA", "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/2da/200_80_0/2daf465fc260a8884dcc57b1809ed32d.jpg" },
+    { "name": "360", "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/762/y3ktp68l1njcyz5fuwlsx929f4wi0l58/200_80_0/360_logo.jpg" },
+    { "name": "CONCEPT", "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/76a/200_80_0/ewlbshrtu5e0tg3txdaob0vlu9046krb.jpeg" },
+    { "name": "KEBREN", "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/e74/200_80_0/5javpgqaykhajdr6lnf3i4bgjy58y0vx.png" },
+    { "name": "FREZY GRAN'D", "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/4e5/200_80_0/ydg55ixa7djgx1etw7q94v479uvwu9wh.jpg" },
+    { "name": "INDIGO", "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/52b/200_80_0/52yj8k08ivztai1ve9au0m2oq23ob2km.png" },
+    { "name": "NEXXT", "image": "https://sibcirulnik.ru/upload/resize_cache/iblock/48d/200_80_0/39pt30f9cbk7vyqmi387hxc1a0y0sodf.png" },
+    { "name": "KAARAL PURIFY", "image": "https://sibcirulnik.ru/upload/iblock/549/y8m1c0t3esrqasy26r4z9ci26zezs236.png" },
+    { "name": "ARAVIA PROFESSIONAL", "image": "" }
+  ],
+  "slider": [
+    { "brand": "EXITO", "image": "https://sibcirulnik.ru/upload/iblock/7c5/smsz49cxaf1cysw08gmcoyfp77g0ei7v.png" },
+    { "brand": "OLLIN", "image": "https://sibcirulnik.ru/upload/iblock/3ce/aj1gmohe46mbipniz25hl1232tj570il.png" },
+    { "brand": "KAARAL PURIFY", "image": "https://sibcirulnik.ru/upload/iblock/549/y8m1c0t3esrqasy26r4z9ci26zezs236.png" },
+    { "brand": "EXITO", "image": "https://sibcirulnik.ru/upload/iblock/3dc/8hy8y3p2w4f1ljiqk6044glzmhz2etsm.png" },
+    { "brand": "TEFIA", "image": "https://sibcirulnik.ru/upload/iblock/ff6/hnnxwaq1btxlpqn2rhtcve1rc4xlclyr.png" },
+    { "brand": "STYLE Perfetto PUSH UP", "image": "https://sibcirulnik.ru/upload/iblock/bf7/zxmvn0pwx6h2nslxg11jbjbgu6dgruk6.png" },
+    { "brand": "TEFIA", "image": "https://sibcirulnik.ru/upload/iblock/886/5wrdele7deeu7ozd2sfiiqiu03vjuvwo.png" }
+  ],
+  "sortOptions": [
+    { "id": "popular", "label": "Сначала популярные" },
+    { "id": "name_asc", "label": "С начала алфавита" },
+    { "id": "name_desc", "label": "С конца алфавита" },
+    { "id": "shows_asc", "label": "Сначала непопулярные" },
+    { "id": "price_asc", "label": "Сначала дешевые" },
+    { "id": "price_desc", "label": "Сначала дорогие" },
+    { "id": "available_asc", "label": "По возрастанию наличия" },
+    { "id": "available_desc", "label": "По убыванию наличия" }
+  ],
+  "chatWidget": {
+    "title": "Сибирский Цирюльник — Поддержка",
+    "hint": "Вы можете оставить свой вопрос",
+    "offline": "У нас закончилось рабочее время. Вы можете оставить свой вопрос и мы Вам перезвоним",
+    "submit": "Отправить"
+  }
+}
