@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start -H 0.0.0.0 -p 3000",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "import": "node scripts/import-bitrix.mjs",
+    "import:dry": "node scripts/import-bitrix.mjs --dry-run"
   },
   "dependencies": {
     "next": "^15.5.25",
