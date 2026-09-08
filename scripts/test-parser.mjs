@@ -18,8 +18,17 @@ import {
   isAllowed,
   cleanHtml,
   extractDescription,
+  toAppSchema,
 } from './scrape-catalog.mjs';
 import { normalizeVolume, toNumber, guessBrand, guessLine, translit } from './import-bitrix.mjs';
+import {
+  mergeCategoryTrees,
+  flattenCategories,
+  toExportRecord,
+  flattenProperties,
+  splitVolume,
+  csvEscape,
+} from './export-catalog.mjs';
 
 const BASE = 'https://sibcirulnik.ru';
 
@@ -377,11 +386,159 @@ const APP_FIELDS = [
   'purpose', 'hairType', 'palette', 'images',
   'sku', 'descriptionHtml', 'applicationHtml',
 ];
-const scrapedFields = Object.keys(rich).filter(
-  (k) => !['skipped', 'url', 'breadcrumbs'].includes(k),
+const app = toAppSchema(rich);
+chk('в записи для витрины нет лишних полей',
+  Object.keys(app).filter((k) => !APP_FIELDS.includes(k)), []);
+chk('все обязательные поля на месте',
+  ['slug', 'name', 'brand', 'category', 'price', 'inStock', 'images'].filter((k) => !(k in app)), []);
+chk('поля для бэкенда в витрину не протекли',
+  ['properties', 'jsonLd', 'metaTitle', 'rating', 'breadcrumbs', 'url', 'stockText']
+    .filter((k) => k in app), []);
+chk('дословное описание в витрину попало', app.descriptionHtml === rich.descriptionHtml, true);
+chk('артикул попал', app.sku, '720105');
+chk('oldPrice=null сохраняется (схема допускает null)', toAppSchema({ ...rich, oldPrice: null }).oldPrice, null);
+chk('пустые массивы не пишутся', 'palette' in toAppSchema(rich), false);
+
+/* --- 10. Полная запись для бэкенда ---------------------------------- */
+section('10. Полная запись карточки — всё, что есть на странице');
+chk('все свойства со страницы', rich.properties['Объем'] ?? rich.properties['объем'], '1000 мл');
+chk('артикул в свойствах', rich.properties['Артикул'], '720105');
+chk('назначение и тип волос как производные', [rich.purpose.length, rich.hairType.length], [2, 2]);
+chk('meta-заголовок', rich.metaTitle, 'Шампунь OLLIN CARE для придания объема 1000мл');
+chk('title страницы', rich.pageTitle.includes('Сибирский цирюльник'), true);
+chk('h1', rich.h1, 'Шампунь OLLIN CARE для придания объема 1000мл');
+chk('текст наличия', rich.stockText, 'Есть в наличии');
+chk('текстовая версия описания без тегов',
+  rich.descriptionText.includes('деликатный антиоксидантный уход') && !/<[a-z]/i.test(rich.descriptionText), true);
+chk('сырой JSON-LD сохранён как страховка', rich.jsonLd?.['@type'], 'Product');
+chk('цена из JSON-LD в сырой ноде осталась', rich.jsonLd?.offers?.price, '850');
+chk('внешний id из JSON-LD sku', rich.externalId, '720105');
+chk('рейтинг без разметки — null', rich.rating, null);
+chk('число отзывов по умолчанию 0', rich.reviewsCount, 0);
+chk('под заказ — false для товара в наличии', rich.preorder, false);
+
+/* ------------------------------------------------------------------ */
+/* 11. Слияние разделов в categories.json                              */
+/* ------------------------------------------------------------------ */
+/*
+ * Дерево из парсера строится только по товарам: раздел, в котором товаров
+ * нет, в него не попадает. Значит слияние обязано быть объединением — иначе
+ * пустые и служебные разделы молча исчезают из меню витрины.
+ */
+section('11. Слияние дерева разделов (ничего не теряем)');
+
+const EXISTING = {
+  roots: [
+    {
+      slug: 'kosmetika',
+      name: 'Косметика',
+      shortName: 'Косметика',
+      image: 'https://sibcirulnik.ru/upload/iblock/aaa/icon.png',
+      title: 'Косметика купить с доставкой',
+      count: 644,
+      children: [
+        { slug: 'shampuni', name: 'Шампуни', image: 'https://sibcirulnik.ru/upload/iblock/bbb/s.png' },
+        { slug: 'empty-section', name: 'Акции недели', image: 'https://sibcirulnik.ru/upload/iblock/ccc/a.png' },
+      ],
+    },
+    { slug: 'landings', name: 'Подборки', children: [{ slug: 'gift', name: 'Подарочные наборы' }] },
+  ],
+};
+
+const SCRAPED = {
+  roots: [
+    {
+      slug: 'kosmetika',
+      name: 'Профессиональная косметика',
+      children: [
+        { slug: 'shampuni', name: 'Шампуни' },
+        { slug: 'maski', name: 'Маски' },
+      ],
+    },
+    { slug: 'instrumenty', name: 'Инструменты' },
+  ],
+};
+
+const merged = mergeCategoryTrees(EXISTING, SCRAPED);
+const flatExisting = flattenCategories(EXISTING, []);
+const flatMerged = flattenCategories({ roots: merged.roots }, []);
+
+chk('узлов стало не меньше, чем было', flatMerged.length >= flatExisting.length, true);
+chk('раздел витрины без товаров сохранён',
+  flatMerged.some((c) => c.path === 'kosmetika/empty-section'), true);
+chk('ветка, которой нет на сайте, сохранена целиком',
+  flatMerged.some((c) => c.path === 'landings/gift'), true);
+chk('новый раздел с сайта добавлен', flatMerged.some((c) => c.path === 'instrumenty'), true);
+chk('новый подраздел добавлен внутрь своей ветки',
+  flatMerged.some((c) => c.path === 'kosmetika/maski'), true);
+
+chk('кураторская иконка не потеряна',
+  merged.roots[0].children.find((c) => c.slug === 'shampuni').image,
+  'https://sibcirulnik.ru/upload/iblock/bbb/s.png');
+chk('shortName, title и count сохранены',
+  [merged.roots[0].shortName, merged.roots[0].title, merged.roots[0].count],
+  ['Косметика', 'Косметика купить с доставкой', 644]);
+chk('имя витрины не перезаписано именем из хлебных крошек', merged.roots[0].name, 'Косметика');
+chk('порядок разделов витрины сохранён',
+  merged.roots.map((r) => r.slug), ['kosmetika', 'landings', 'instrumenty']);
+chk('порядок подразделов сохранён, новый — в конце',
+  merged.roots[0].children.map((c) => c.slug), ['shampuni', 'empty-section', 'maski']);
+// Новых два: подраздел «maski» и корень «instrumenty». Сохранённых пять:
+// kosmetika, shampuni, empty-section, landings, gift.
+chk('статистика слияния правдива', [merged.stats.added, merged.stats.kept], [2, 5]);
+chk('всего узлов в результате', merged.stats.total, 7);
+
+chk('слияние идемпотентно',
+  JSON.stringify(mergeCategoryTrees({ roots: merged.roots }, SCRAPED).roots),
+  JSON.stringify(merged.roots));
+chk('пустое дерево с сайта ничего не ломает',
+  JSON.stringify(mergeCategoryTrees(EXISTING, { roots: [] }).roots), JSON.stringify(EXISTING.roots));
+chk('без categories.json получается дерево с сайта',
+  JSON.stringify(mergeCategoryTrees({ roots: [] }, SCRAPED).roots), JSON.stringify(SCRAPED.roots));
+chk('у нового раздела без детей нет пустого children', 'children' in merged.roots[2], false);
+
+/* ------------------------------------------------------------------ */
+/* 12. Полная запись товара для бэкенда                                */
+/* ------------------------------------------------------------------ */
+section('12. Полная запись товара для бэкенда');
+
+const backendSrc = parseProductPage(
+  RICH,
+  `${BASE}/catalog/professionalnaya_kosmetika_dlya_volos/shampuni/ollin-care-1000/`,
+  BASE,
 );
-chk('нет лишних полей', scrapedFields.filter((k) => !APP_FIELDS.includes(k)), []);
-chk('все обязательные поля на месте', APP_FIELDS.filter((k) => k !== 'id' && !(k in rich)), []);
+const rec = toExportRecord(backendSrc, { base: BASE, scrapedAt: '2026-09-08T00:00:00.000Z' });
+
+chk('первичный ключ — абсолютный адрес со слэшем', rec.sourceUrl,
+  `${BASE}/catalog/professionalnaya_kosmetika_dlya_volos/shampuni/ollin-care-1000/`);
+chk('относительный путь сохранён отдельно', rec.sourcePath.startsWith('/catalog/'), true);
+chk('валюта проставлена', rec.currency, 'RUB');
+chk('скидка посчитана', rec.discountPercent > 0, true);
+chk('availability согласован с наличием', rec.availability, rec.inStock ? 'InStock' : 'OutOfStock');
+chk('путь раздела разложен на уровни', rec.categoryPath.length > 1, true);
+chk('свойства перенесены как есть', Object.keys(rec.properties).length > 0, true);
+chk('текст описания лежит рядом с HTML',
+  rec.descriptionText.length > 0 && rec.descriptionHtml.length > 0, true);
+chk('сырой JSON-LD доехал до экспорта', rec.jsonLd?.['@type'], 'Product');
+chk('главное фото вынесено отдельно', rec.mainImage, rec.images[0]);
+chk('дата сбора проставлена', rec.scrapedAt, '2026-09-08T00:00:00.000Z');
+
+chk('объём «1000 мл» разложен', splitVolume('1000 мл'), { value: 1000, unit: 'мл' });
+chk('объём «60 гр» разложен', splitVolume('60 гр'), { value: 60, unit: 'гр' });
+chk('дробный объём «0,5 л» разложен', splitVolume('0,5 л'), { value: 0.5, unit: 'л' });
+chk('пустой объём не выдумывает число', splitVolume(''), { value: null, unit: '' });
+chk('нечисловой объём сохраняется целиком', splitVolume('набор'), { value: null, unit: 'набор' });
+
+chk('CSV экранирует точку с запятой', csvEscape('шампунь; 1000 мл'), '"шампунь; 1000 мл"');
+chk('CSV удваивает кавычки', csvEscape('крем "7 в 1"'), '"крем ""7 в 1"""');
+chk('CSV экранирует перенос строки', csvEscape('строка1\nстрока2').startsWith('"'), true);
+chk('CSV не трогает простое значение', csvEscape('OLLIN'), 'OLLIN');
+chk('CSV не роняет null', csvEscape(null), '');
+
+const propRows = flattenProperties([rec]);
+chk('свойства разворачиваются в длинную таблицу', propRows.length, Object.keys(rec.properties).length);
+chk('у каждой строки свойств есть ссылка на товар',
+  propRows.every((r) => r.sourceUrl === rec.sourceUrl), true);
 
 /* ------------------------------------------------------------------ */
 console.log(`\n═══════ ИТОГ: ${pass} пройдено, ${fail} провалено ═══════`);

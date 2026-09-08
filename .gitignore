@@ -10,3 +10,7 @@ npm-debug.log*
 
 # Кэш и промежуточные файлы парсера каталога (scripts/scrape-catalog.mjs)
 .scrape-cache/
+
+# Выгрузка для бэкенда (products.jsonl/csv, manifest.json) — генерируется
+# парсером на машине пользователя и в репозиторий не кладётся
+export/

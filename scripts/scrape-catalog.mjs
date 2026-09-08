@@ -31,10 +31,17 @@
  * Полный список опций: --help
  */
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync, renameSync, copyFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, renameSync, copyFileSync, appendFileSync } from 'node:fs';
 import { join, dirname, resolve, basename } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { guessBrand, guessLine, normalizeVolume, toNumber, translit } from './import-bitrix.mjs';
+import {
+  toExportRecord,
+  writeExportBundle,
+  flattenCategories,
+  mergeCategoryTrees,
+  readJsonl,
+} from './export-catalog.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, '..');
@@ -70,6 +77,11 @@ function parseArgs(argv) {
     saveHtml: false,
     respectRobots: true,
     quiet: false,
+    export: true,
+    exportDir: join(ROOT, 'export'),
+    // undefined = «решай по ситуации»: для частичного прогона — выключено
+    discoverListings: undefined,
+    updateCategories: undefined,
   };
 
   for (let i = 0; i < argv.length; i++) {
@@ -93,6 +105,12 @@ function parseArgs(argv) {
       case '--html': o.html = resolve(next()); break;
       case '--save-html': o.saveHtml = true; break;
       case '--no-respect-robots': o.respectRobots = false; break;
+      case '--export': o.export = true; o.exportDir = resolve(next()); break;
+      case '--no-export': o.export = false; break;
+      case '--discover-listings': o.discoverListings = true; break;
+      case '--no-discover-listings': o.discoverListings = false; break;
+      case '--update-categories': o.updateCategories = true; break;
+      case '--no-update-categories': o.updateCategories = false; break;
       case '--quiet': o.quiet = true; break;
       case '-h': case '--help': o.help = true; break;
       default:
@@ -131,10 +149,29 @@ const HELP = `
   --retries <N>        повторов при ошибке (по умолчанию 3)
   --no-respect-robots  не проверять robots.txt (не рекомендуется)
 
+Полнота охвата
+  --discover-listings  обойти страницы разделов и добрать карточки, которых
+                       нет в sitemap (по умолчанию включено для полного прогона)
+  --no-discover-listings  не обходить разделы — работать строго по sitemap
+
 Результат
   --out <каталог>      куда писать products.json и categories.json
-  --cache <каталог>    кэш прогресса для --resume
+  --cache <каталог>    кэш прогресса для --resume (progress.json + records.jsonl)
   --resume             продолжить прерванный прогон
+  --export <каталог>   куда писать выгрузку для бэкенда (по умолчанию export/)
+  --no-export          не писать выгрузку для бэкенда
+  --update-categories  слить найденные разделы в src/data/categories.json
+                       (по умолчанию включено для полного прогона; иконки и
+                       подписи существующих узлов сохраняются, копия — в кэше)
+  --no-update-categories  не трогать categories.json
+
+Файлы выгрузки для бэкенда
+  products.jsonl       по записи на товар — основной файл для импорта в БД
+  products.json        те же записи массивом
+  products.csv         ; и BOM — открывается в Excel и 1С
+  properties.csv       все характеристики длинной таблицей (товар, свойство, значение)
+  categories.json      дерево разделов + плоский список путей
+  manifest.json        счётчики, колонки, список неполных записей
 `;
 
 /* ================================================================== */
@@ -644,6 +681,82 @@ export function extractDescription(html, ld, props = {}) {
   };
 }
 
+/* ------------------------------------------------------------------ */
+/* Всё остальное, что нужно бэкенду                                    */
+/* ------------------------------------------------------------------ */
+
+/** SEO-поля и заголовки: бэкенду они нужны для мета-тегов карточки. */
+export function extractMeta(html) {
+  const title = decodeEntities(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] ?? '');
+  const canonical = html.match(/<link[^>]+rel\s*=\s*["']canonical["'][^>]*>/i)?.[0]
+    ?.match(/href\s*=\s*["']([^"']+)["']/i)?.[1] ?? '';
+  return {
+    pageTitle: title,
+    h1: extractH1(html),
+    metaTitle: metaContent(html, 'og:title') || decodeEntities(
+      html.match(/<meta[^>]+name\s*=\s*["']title["'][^>]*content\s*=\s*["']([^"']*)["']/i)?.[1] ?? '',
+    ) || title,
+    metaDescription:
+      decodeEntities(
+        html.match(/<meta[^>]+name\s*=\s*["']description["'][^>]*content\s*=\s*["']([^"']*)["']/i)?.[1] ?? '',
+      ) || metaContent(html, 'og:description'),
+    canonical,
+  };
+}
+
+/**
+ * Рейтинг и число отзывов.
+ * Берём из JSON-LD aggregateRating, иначе — из подписи вкладки «Отзывы (8)».
+ */
+export function extractRating(html, ld) {
+  const agg = ld?.aggregateRating ?? ld?.['aggregateRating'];
+  let rating = null;
+  let reviewsCount = null;
+
+  if (agg) {
+    rating = toNumber(agg.ratingValue ?? agg.RatingValue);
+    reviewsCount = toNumber(agg.reviewCount ?? agg.ReviewCount ?? agg.ratingCount);
+  }
+
+  if (reviewsCount === null) {
+    const m = html.match(/Отзывы\s*\(\s*(\d+)\s*\)/i) ?? html.match(/(\d+)\s+отзыв/i);
+    if (m) reviewsCount = Number(m[1]);
+  }
+  if (rating === null) {
+    const m = html.match(/itemprop\s*=\s*["']ratingValue["'][^>]*content\s*=\s*["']([\d.,]+)["']/i);
+    if (m) rating = toNumber(m[1]);
+  }
+
+  return { rating, reviewsCount: reviewsCount ?? 0 };
+}
+
+/** Текст наличия как на сайте — бэкенду пригодится для вывода на витрине. */
+export function extractStockText(html) {
+  const m = stripTags(html).match(
+    /(Есть в наличии(?: в \d+ магазинах)?|Нет в наличии|Под заказ|Ожидается|Заканчивается)/i,
+  );
+  return m ? m[1] : '';
+}
+
+/** «Под заказ» — отдельная отметка: товар не в наличии, но заказать можно. */
+export function extractPreorder(html, ld) {
+  const avail = String(ld?.offers?.availability ?? '');
+  if (/PreOrder|PreSale|BackOrder/i.test(avail)) return true;
+  return /Под заказ/i.test(stripTags(html));
+}
+
+/** Внешний идентификатор товара на сайте — стабильнее внутреннего id. */
+export function extractExternalId(html, ld, sku) {
+  const fromLd = decodeEntities(ld?.productID ?? ld?.productId ?? ld?.mpn ?? '');
+  if (fromLd) return fromLd;
+  // Аспро выводит id элемента в атрибутах блока товара
+  const m =
+    html.match(/data-(?:product-)?id\s*=\s*["'](\d{2,})["']/i) ??
+    html.match(/\bID\s*[:=]\s*(\d{3,})\b/);
+  if (m) return m[1];
+  return sku || '';
+}
+
 /** Есть ли на странице машиночитаемая разметка именно товара. */
 function hasProductMarkup(html, ld) {
   return Boolean(
@@ -777,7 +890,10 @@ function extractProps(html) {
   const props = {};
   const zone = html.match(/class\s*=\s*["'][^"']*(?:props|characteristics|item_stock|detail_props)[^"']*["'][\s\S]{0,12000}?<\/table>/i)?.[0] ?? '';
   for (const m of zone.matchAll(/<tr[^>]*>[\s\S]*?<td[^>]*>([\s\S]*?)<\/td>[\s\S]*?<td[^>]*>([\s\S]*?)<\/td>/gi)) {
-    const k = stripTags(m[1]).replace(/:$/, '').toLowerCase();
+    // Регистр названия сохраняем: в экспорт для бэкенда свойство должно уйти
+    // так, как подписано на сайте («Артикул», а не «артикул»). Поиск по
+    // свойствам при этом регистронезависимый — см. pickProp.
+    const k = stripTags(m[1]).replace(/:$/, '').trim();
     const v = stripTags(m[2]);
     if (k && v) props[k] = v;
   }
@@ -785,9 +901,10 @@ function extractProps(html) {
 }
 
 function pickProp(props, keys) {
+  const entries = Object.entries(props);
   for (const k of keys) {
-    const hit = Object.keys(props).find((p) => p.includes(k));
-    if (hit && props[hit]) return props[hit];
+    const hit = entries.find(([name, v]) => v && name.toLowerCase().includes(k));
+    if (hit) return hit[1];
   }
   return '';
 }
@@ -838,6 +955,10 @@ export function parseProductPage(html, url, base) {
 
   const props = extractProps(html);
   const badges = extractBadges(html);
+  const meta = extractMeta(html);
+  const { rating, reviewsCount } = extractRating(html, ld);
+  const stockText = extractStockText(html);
+  const preorder = extractPreorder(html, ld);
   const volume = normalizeVolume(
     pickProp(props, ['объем', 'объём', 'volume', 'фасовка']) ||
       // \b в JS не видит кириллицу как \w, поэтому граница слова здесь не
@@ -849,6 +970,11 @@ export function parseProductPage(html, url, base) {
     decodeEntities(ld?.brand?.name ?? (typeof ld?.brand === 'string' ? ld?.brand : '')) ||
     pickProp(props, ['бренд', 'brand', 'производитель', 'торговая марка']) ||
     guessBrand(name);
+
+  const sku =
+    pickProp(props, ['артикул', 'код товара', 'sku']) || decodeEntities(ld?.sku) || '';
+  // Описание берём дословно с сайта: клиент сверяет карточку с оригиналом
+  const { descriptionHtml, applicationHtml } = extractDescription(html, ld, props);
 
   return {
     skipped: false,
@@ -862,6 +988,8 @@ export function parseProductPage(html, url, base) {
     oldPrice,
     volume,
     inStock: extractStock(html, ld),
+    stockText,
+    preorder,
     hit: badges.hit,
     recommend: badges.recommend,
     sale: badges.sale || Boolean(oldPrice),
@@ -871,9 +999,21 @@ export function parseProductPage(html, url, base) {
     palette: splitList(pickProp(props, ['палитра', 'оттенок', 'цвет'])),
     images: extractImages(html, ld, base),
     breadcrumbs: extractBreadcrumbs(html, ld),
-    sku: pickProp(props, ['артикул', 'код товара', 'sku']) || decodeEntities(ld?.sku) || '',
-    // Описание берём дословно с сайта: клиент сверяет карточку с оригиналом
-    ...extractDescription(html, ld, props),
+    sku,
+    externalId: extractExternalId(html, ld, sku),
+    // Все пары «свойство → значение» со страницы: для бэкенда это источник
+    // правды, а purpose/hairType/palette — лишь производные для фильтров витрины.
+    properties: props,
+    descriptionHtml,
+    descriptionText: stripTags(descriptionHtml),
+    applicationHtml,
+    applicationText: stripTags(applicationHtml),
+    rating,
+    reviewsCount,
+    ...meta,
+    // Сырая нода JSON-LD: если сайт отдаёт поле, о котором парсер не знает,
+    // оно всё равно доедет до бэкенда и его не придётся собирать заново.
+    jsonLd: ld ?? null,
   };
 }
 
@@ -931,12 +1071,24 @@ export function buildCategoryTree(products) {
 /* Прогресс / checkpoint                                               */
 /* ================================================================== */
 
+/**
+ * Состояние прогона разделено на две части.
+ *
+ * progress.json хранит ТОЛЬКО карту «путь → результат»: она компактная, и её
+ * можно перезаписывать целиком каждые 25 товаров. Сами записи пишутся
+ * append-only в records.jsonl — по строке на товар.
+ *
+ * Раньше товары лежали в progress.json, и каждый checkpoint перезаписывал весь
+ * массив: на 5000 SKU с описаниями это десятки мегабайт на запись каждые 25
+ * товаров, то есть гигабайты диска и заметное замедление к концу прогона.
+ */
 function loadCheckpoint(file) {
-  if (!existsSync(file)) return { done: {}, products: [] };
+  if (!existsSync(file)) return { done: {} };
   try {
-    return JSON.parse(readFileSync(file, 'utf8'));
+    const parsed = JSON.parse(readFileSync(file, 'utf8'));
+    return { done: parsed.done ?? {} };
   } catch {
-    return { done: {}, products: [] };
+    return { done: {} };
   }
 }
 
@@ -998,6 +1150,59 @@ async function discover(opts) {
   return { categories, products: allowedProducts, robots, totalSitemap: allUrls.length };
 }
 
+/**
+ * Добор карточек со страниц разделов.
+ *
+ * Sitemap — основной источник, но полагаться только на него нельзя: Битрикс
+ * пересоздаёт его по расписанию, и свежая карточка могла в него ещё не попасть.
+ * Страница раздела отдаёт ссылки на свои товары, поэтому обход разделов —
+ * дешёвый способ проверить полноту и добрать пропущенное.
+ *
+ * Пагинацию не трогаем: *PAGEN_* закрыт в robots.txt, так что берём только
+ * первую страницу каждого раздела. Это осознанное ограничение — оно держит
+ * обход в рамках разрешённого, а пропущенные глубже первой страницы товары
+ * всё равно придут из sitemap.
+ */
+async function discoverListings(categoryPaths, opts, robots, known) {
+  const targets = opts.respectRobots
+    ? categoryPaths.filter((p) => isAllowed(`${p}/`, robots))
+    : categoryPaths;
+
+  if (!targets.length) return { extra: [], scanned: 0 };
+  if (!opts.quiet) {
+    process.stderr.write(`→ Разделы: проверяю ${targets.length} страниц на полноту охвата…\n`);
+  }
+
+  const found = new Set();
+  const state = { done: {}, records: [], recordsFile: join(opts.cache, '.listing-probe') };
+  const LINK_RE = /href\s*=\s*["'](\/catalog\/[^"'?#\s]+)["']/gi;
+
+  await runQueue(targets, opts, state, async (path) => {
+    try {
+      const { status, text } = await fetchText(`${opts.base}${path}/`, opts);
+      if (status !== 200 || !text) {
+        state.done[path] = { error: `HTTP ${status}` };
+        return;
+      }
+      state.done[path] = { ok: true };
+      for (const m of text.matchAll(LINK_RE)) {
+        const p = pathOf(m[1], opts.base);
+        if (p && p !== path && !known.has(p)) found.add(p);
+      }
+    } catch (e) {
+      state.done[path] = { error: e.message };
+    }
+  });
+
+  // Из найденного товаром считается только лист: префиксы других URL — разделы
+  const extra = [...found].filter((p) => {
+    if (opts.respectRobots && !isAllowed(p, robots)) return false;
+    return ![...found].some((other) => other !== p && other.startsWith(`${p}/`));
+  });
+
+  return { extra: extra.sort(), scanned: targets.length };
+}
+
 function filterUrls(urls, opts) {
   let out = urls;
   if (opts.only) out = out.filter((u) => u.includes(opts.only));
@@ -1033,6 +1238,10 @@ async function scrapeOne(path, opts, state, idx, total) {
     }
 
     state.done[path] = { ok: true };
+    state.records.push(parsed);
+    // Append-only: при обрыве уже собранные карточки остаются на диске
+    appendFileSync(state.recordsFile, `${JSON.stringify(parsed)}\n`, 'utf8');
+
     if (!opts.quiet) {
       process.stderr.write(
         `  [${idx + 1}/${total}] ${parsed.price} руб · ${parsed.brand} · ${parsed.name.slice(0, 58)}\n`,
@@ -1046,6 +1255,11 @@ async function scrapeOne(path, opts, state, idx, total) {
   }
 }
 
+/**
+ * Пул параллельных работников. Ничего не знает о том, что именно делается
+ * с элементом: записью результата занимается onItem. Так одной очередью
+ * пользуются и обход карточек, и разведка страниц разделов.
+ */
 async function runQueue(urls, opts, state, onItem) {
   let cursor = 0;
   const total = urls.length;
@@ -1057,10 +1271,9 @@ async function runQueue(urls, opts, state, onItem) {
 
       if (state.done[path]?.ok && opts.resume) continue;
 
-      const result = await onItem(path, i, total);
-      if (result) state.products.push(result);
+      await onItem(path, i, total);
 
-      // checkpoint каждые 25 товаров — обрыв не теряет много работы
+      // Карта готовности компактная — перезаписывать её целиком недорого
       if ((i + 1) % 25 === 0) saveCheckpoint(join(opts.cache, 'progress.json'), state);
 
       await sleep(opts.delay + workerId * 10);
@@ -1097,18 +1310,32 @@ function dedupe(products) {
   return out;
 }
 
+/** Поля схемы Product из src/lib/types.ts */
+const APP_REQUIRED = ['slug', 'name', 'brand', 'category', 'price', 'inStock', 'images', 'oldPrice'];
+const APP_OPTIONAL = [
+  'line', 'volume', 'hit', 'recommend', 'sale', 'isNew',
+  'purpose', 'hairType', 'palette', 'descriptionHtml', 'applicationHtml', 'sku',
+];
+
 /**
- * Приводит разбор страницы к схеме Product из src/lib/types.ts.
- * Убираются только служебные поля: breadcrumbs нужны для дерева разделов,
- * url — для отчётов. sku, descriptionHtml и applicationHtml остаются —
- * они в схеме есть и показываются в карточке.
+ * Приводит полную запись карточки к схеме витрины.
+ *
+ * Проекция сделана белым списком намеренно: полная запись несёт поля для
+ * бэкенда (properties, jsonLd, metaTitle, rating…), и при вычёркивании
+ * каждое новое поле однажды протекло бы в products.json и сломало бы типы.
+ * Пустые строковые и массивные значения не пишем — так файл на тысячах SKU
+ * остаётся компактным, а кураторские данные выглядят так же.
  */
-function toAppSchema(p) {
-  const { breadcrumbs, url, skipped, reason, ...rest } = p;
-  const out = { ...rest };
-  if (!out.sku) delete out.sku;
-  if (!out.descriptionHtml) delete out.descriptionHtml;
-  if (!out.applicationHtml) delete out.applicationHtml;
+export function toAppSchema(p) {
+  const out = {};
+  for (const k of APP_REQUIRED) out[k] = p[k];
+  for (const k of APP_OPTIONAL) {
+    const v = p[k];
+    if (v === undefined || v === null) continue;
+    if (typeof v === 'string' && !v.trim()) continue;
+    if (Array.isArray(v) && v.length === 0) continue;
+    out[k] = v;
+  }
   return out;
 }
 
@@ -1193,7 +1420,7 @@ async function main() {
     console.error('  и запустите  node scripts/scrape-catalog.mjs --html <файл> <url карточки>');
     process.exit(1);
   }
-  const { categories, products: productUrls, totalSitemap } = discovery;
+  const { categories, products: productUrls, totalSitemap, robots } = discovery;
 
   if (!totalSitemap) {
     console.error('\n✗ Из sitemap не удалось прочитать ни одного URL.');
@@ -1231,14 +1458,46 @@ async function main() {
     return;
   }
 
-  const targets = filterUrls(productUrls, opts);
+  /* --- Полнота охвата: добор карточек сверх sitemap --- */
+  let extraFromListings = [];
+  if (opts.discoverListings ?? (!opts.limit && !opts.only)) {
+    const probe = await discoverListings(categories, opts, robots, new Set(productUrls));
+    console.log(`  разделов проверено:  ${probe.scanned}`);
+    if (probe.extra.length) {
+      console.log(`  карточек сверх sitemap: ${probe.extra.length} (добавляю в очередь)`);
+      extraFromListings = probe.extra;
+    } else {
+      console.log('  расхождений с sitemap нет — охват полный ✓');
+    }
+  }
+
+  const targets = filterUrls([...productUrls, ...extraFromListings], opts);
   console.log(`\n→ Запрашиваю ${targets.length} страниц товаров…\n`);
 
   const ckpt = join(opts.cache, 'progress.json');
-  const state = opts.resume ? loadCheckpoint(ckpt) : { done: {}, products: [] };
+  const recordsFile = join(opts.cache, 'records.jsonl');
+  const state = opts.resume ? loadCheckpoint(ckpt) : { done: {} };
+  state.recordsFile = recordsFile;
+  mkdirSync(opts.cache, { recursive: true });
+
   if (opts.resume) {
+    const { records, broken } = readJsonl(recordsFile);
+    state.records = records;
     const done = Object.values(state.done).filter((d) => d.ok).length;
-    console.log(`  resume: уже обработано ${done}, продолжаю\n`);
+    console.log(`  resume: обработано ${done}, записей собрано ${records.length}\n`);
+    // Недописанная строка означает, что обрыв пришёлся на середину записи:
+    // такой товар нужно запросить заново, а не считать готовым.
+    if (broken) {
+      console.log(`  ⚠ повреждённых строк в records.jsonl: ${broken} — соберу эти товары заново`);
+      for (const [path, v] of Object.entries(state.done)) {
+        if (v.ok && !records.some((r) => r.url === path)) state.done[path] = { error: 'запись потеряна' };
+      }
+    }
+  } else {
+    // Прогон заново: вчерашние записи не должны попасть в сегодняшний экспорт
+    state.records = [];
+    writeFileSync(recordsFile, '', 'utf8');
+    writeFileSync(ckpt, '{}', 'utf8');
   }
 
   const started = Date.now();
@@ -1246,9 +1505,11 @@ async function main() {
 
   const failed = Object.entries(state.done).filter(([, v]) => v.error);
   // Сначала порядок по sitemap, потом id — иначе они пляшут от тайминга сети
-  const ordered = orderBySitemap(state.products, productUrls);
+  const ordered = orderBySitemap(state.records, productUrls);
   const products = dedupe(ordered.map(toAppSchema));
-  const tree = buildCategoryTree(state.products);
+  const tree = buildCategoryTree(ordered);
+  const scrapedAt = new Date().toISOString();
+  const exportRecords = ordered.map((r) => toExportRecord(r, { base: opts.base, scrapedAt }));
 
   report(products, categories);
 
@@ -1278,8 +1539,76 @@ async function main() {
 
   writeFileSync(catPath, `${JSON.stringify(tree, null, 2)}\n`, 'utf8');
   console.log(`✓ дерево разделов → ${catPath}`);
-  console.log('  (слить с categories.json вручную: там есть иконки разделов,');
-  console.log('   которых нет в scraped-версии)');
+
+  /* --- Экспорт для бэкенда --- */
+  if (opts.export) {
+    const manifest = writeExportBundle({
+      dir: opts.exportDir,
+      records: exportRecords,
+      tree,
+      scrapedAt,
+      source: opts.base,
+      appProducts: products.length,
+    });
+    console.log(`\n✓ экспорт для бэкенда → ${opts.exportDir}/`);
+    for (const f of manifest.files) {
+      console.log(`  ${`${(f.bytes / 1024).toFixed(0)} КБ`.padStart(9)}  ${f.name}`);
+    }
+    const st = manifest.stats;
+    console.log(`  загрузочный файл: ${manifest.importFile} (ключ: ${manifest.primaryKey})`);
+    console.log(
+      `  записей: ${manifest.products} · пар свойств: ${st.propertyRows} ` +
+        `(${st.uniqueProperties} названий) · разделов: ${st.categoryNodes}`,
+    );
+    console.log(
+      `  с описанием: ${st.withDescription} · с фото: ${st.withImages} · ` +
+        `в наличии: ${st.inStock} · со скидкой: ${st.onSale}`,
+    );
+    if (manifest.incomplete.length) {
+      console.log(`  ⚠ неполных записей: ${manifest.incomplete.length} (список в manifest.json)`);
+      for (const w of manifest.incomplete.slice(0, 5)) console.log(`     ${w}`);
+      if (manifest.incomplete.length > 5) console.log('     …');
+    }
+  }
+
+  /* --- Слияние разделов в categories.json --- */
+  // Страницы разделов генерируются из categories.json, поэтому новые ветки без
+  // слияния дали бы 404. Иконки и подписи существующих узлов сохраняются.
+  const mergeCats = opts.updateCategories ?? (!opts.limit && !opts.only);
+  if (mergeCats && tree.roots?.length) {
+    const catMain = join(opts.out, 'categories.json');
+    let baseTree = null;
+    if (existsSync(catMain)) {
+      try {
+        baseTree = JSON.parse(readFileSync(catMain, 'utf8'));
+      } catch (e) {
+        console.error(`\n⚠ categories.json не читается (${e.message}) — не трогаю его.`);
+        baseTree = null;
+      }
+      if (baseTree && !Array.isArray(baseTree.roots)) {
+        console.error('\n⚠ в categories.json нет ключа roots — не трогаю его.');
+        baseTree = null;
+      }
+      if (baseTree) copyFileSync(catMain, join(opts.cache, 'categories.backup.json'));
+    } else {
+      baseTree = { roots: [] };
+    }
+
+    if (baseTree) {
+      const before = flattenCategories(baseTree, []).length;
+      const merged = mergeCategoryTrees(baseTree, tree);
+      // В файл данных идут только разделы: служебные счётчики слияния — не часть схемы
+      const outTree = { roots: merged.roots };
+      writeFileSync(catMain, `${JSON.stringify(outTree, null, 2)}\n`, 'utf8');
+      console.log(
+        `\n✓ разделы слиты → ${catMain} (было ${before}, стало ${merged.stats.total}; ` +
+          `новых ${merged.stats.added}, сохранено ${merged.stats.kept}; ` +
+          'копия прежнего — .scrape-cache/categories.backup.json)',
+      );
+    }
+  } else if (!mergeCats) {
+    console.log('\n  categories.json не менялся: прогон частичный (--limit/--only).');
+  }
 
   console.log(`\nВремя: ${((Date.now() - started) / 1000).toFixed(1)} с`);
   console.log('Дальше: npm run build && npm start');

@@ -19,7 +19,7 @@
  */
 
 import { spawn } from 'node:child_process';
-import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, existsSync, statSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -81,8 +81,12 @@ function runScraper(args, timeoutMs = 120000) {
 async function runScrape(tag) {
   const out = join(work, `out-${tag}`);
   const cache = join(work, `cache-${tag}`);
+  // Каталог выгрузки задаём явно: по умолчанию это export/ в корне репозитория,
+  // и тест не должен оставлять свои файлы в рабочем дереве.
+  const exportDir = join(work, `export-${tag}`);
   const res = await runScraper([
-    SCRAPER, '--base', base, '--delay', '0', '--out', out, '--cache', cache, '--quiet',
+    SCRAPER, '--base', base, '--delay', '0', '--out', out, '--cache', cache,
+    '--export', exportDir, '--no-update-categories', '--quiet',
   ]);
   if (res.code !== 0) {
     console.error(res.stdout, res.stderr);
@@ -91,6 +95,7 @@ async function runScrape(tag) {
   return {
     out,
     cache,
+    exportDir,
     stdout: res.stdout,
     products: JSON.parse(readFileSync(join(out, 'products.json'), 'utf8')),
     tree: JSON.parse(readFileSync(join(out, 'categories.scraped.json'), 'utf8')),
@@ -206,19 +211,119 @@ chk('id не перемешались от тайминга сети',
 section('11. Прерванный прогон продолжается');
 const resumeOut = join(work, 'out-resume');
 const resumeCache = join(work, 'cache-resume');
+const resumeExport = join(work, 'export-resume');
 const first = await runScraper([
   SCRAPER, '--base', base, '--delay', '0', '--limit', '2',
-  '--out', resumeOut, '--cache', resumeCache, '--quiet',
+  '--out', resumeOut, '--cache', resumeCache, '--no-export', '--quiet',
 ]);
 chk('пробный прогон на 2 товарах', first.code, 0);
 const resumed = await runScraper([
-  SCRAPER, '--base', base, '--delay', '0', '--resume',
+  SCRAPER, '--base', base, '--delay', '0', '--resume', '--export', resumeExport,
   '--out', resumeOut, '--cache', resumeCache, '--quiet',
 ]);
 chk('--resume завершился успешно', resumed.code, 0);
 const resumedProducts = JSON.parse(readFileSync(join(resumeOut, 'products.json'), 'utf8'));
 chk('после --resume собраны все товары', resumedProducts.length, fixtureStats.products);
 chk('дубликатов нет', new Set(resumedProducts.map((p) => `${p.category}/${p.slug}`)).size, resumedProducts.length);
+
+/* --- 12. Выгрузка для бэкенда ---------------------------------------------- */
+/*
+ * Эти файлы — то, ради чего собирается полный каталог: их загружают в базу.
+ * Проверяем не «файлы создались», а пригодность к загрузке: целостность JSONL,
+ * уникальность первичного ключа, полноту каждой записи, кодировку CSV и
+ * совпадение манифеста с реальным содержимым каталога.
+ */
+section('12. Выгрузка для бэкенда (products.jsonl и компания)');
+
+const EXPORT_FILES = [
+  'products.jsonl', 'products.json', 'products.csv',
+  'properties.csv', 'categories.json', 'manifest.json',
+];
+const expDir = run1.exportDir;
+chk('на месте все файлы выгрузки', EXPORT_FILES.filter((f) => !existsSync(join(expDir, f))), []);
+
+// JSONL разбираем сами, а не тем же readJsonl, которым пользуется парсер:
+// проверка должна ловить ошибку в помощнике, а не наследовать её.
+const jsonlRaw = readFileSync(join(expDir, 'products.jsonl'), 'utf8');
+const jsonlLines = jsonlRaw.split('\n').filter((l) => l.trim());
+const jsonl = jsonlLines.map((l) => JSON.parse(l)); // бросит, если строка битая
+chk('строк в JSONL столько же, сколько товаров', jsonlLines.length, fixtureStats.products);
+chk('файл заканчивается переносом строки', jsonlRaw.endsWith('\n'), true);
+
+chk('первичный ключ уникален', new Set(jsonl.map((r) => r.sourceUrl)).size, jsonl.length);
+chk('sourceUrl абсолютный', jsonl.filter((r) => !r.sourceUrl.startsWith(`${base}/`)).length, 0);
+// sourcePath хранится без хвостового слэша, sourceUrl — абсолютный и со слэшем:
+// на сайте все карточки живут по адресам с trailingSlash, и ключ должен быть каноническим.
+chk('sourceUrl — абсолютный адрес карточки',
+  jsonl.filter((r) => r.sourceUrl !== `${base}${r.sourcePath.replace(/\/+$/, '')}/`).length, 0);
+
+const BACKEND_REQUIRED = ['name', 'price', 'currency', 'category', 'descriptionText', 'scrapedAt'];
+chk('обязательные поля бэкенда есть у всех',
+  jsonl.filter((r) => BACKEND_REQUIRED.some((k) => !r[k])).map((r) => r.slug), []);
+chk('цена положительная у всех', jsonl.filter((r) => !(r.price > 0)).length, 0);
+chk('валюта одна и та же', [...new Set(jsonl.map((r) => r.currency))], ['RUB']);
+chk('фото есть у всех', jsonl.filter((r) => !r.images?.length).map((r) => r.slug), []);
+chk('свойства сняты со всех карточек',
+  jsonl.filter((r) => !Object.keys(r.properties ?? {}).length).map((r) => r.slug), []);
+chk('бренд из таблицы свойств доехал', jsonl.every((r) => r.properties?.['Бренд']), true);
+chk('сырой JSON-LD сохранён как страховка', jsonl.filter((r) => !r.jsonLd).length, 0);
+chk('наличие согласовано с availability',
+  jsonl.filter((r) => r.availability !== (r.inStock ? 'InStock' : 'OutOfStock')).length, 0);
+
+// Объём разложен на число и единицу — иначе бэкенду пришлось бы парсить строку
+chk('объём разложен на значение и единицу',
+  jsonl.filter((r) => r.volume && !(r.volumeValue > 0 && r.volumeUnit)).map((r) => r.volume), []);
+
+const jsonlProps = jsonl.reduce((n, r) => n + Object.keys(r.properties ?? {}).length, 0);
+chk('записей в JSONL больше, чем в витринном products.json по числу полей',
+  Object.keys(jsonl[0]).length > Object.keys(run1.products[0]).length, true);
+chk('в витринном файле нет полей бэкенда',
+  ['sourceUrl', 'properties', 'jsonLd', 'metaTitle'].filter((k) => k in run1.products[0]), []);
+
+/* CSV: русский Excel и 1С ждут BOM и «;» */
+const productsCsv = readFileSync(join(expDir, 'products.csv'), 'utf8');
+chk('products.csv начинается с BOM', productsCsv.charCodeAt(0), 0xfeff);
+chk('разделитель CSV — точка с запятой', productsCsv.slice(1).split('\r\n')[0].includes(';'), true);
+chk('первая колонка CSV — первичный ключ', productsCsv.slice(1).split('\r\n')[0].split(';')[0], 'sourceUrl');
+chk('строки CSV разделены CRLF', productsCsv.includes('\r\n'), true);
+const propsCsv = readFileSync(join(expDir, 'properties.csv'), 'utf8');
+chk('properties.csv — длинная таблица', propsCsv.slice(1).split('\r\n')[0], 'sku;sourceUrl;name;property;value');
+chk('в properties.csv есть пара «Бренд»', propsCsv.includes('Бренд'), true);
+chk('пар свойств в CSV не меньше, чем в JSONL',
+  (propsCsv.match(/;Бренд;/g) ?? []).length >= 1 && jsonlProps > 0, true);
+
+/* Разделы: дерево и плоский список со счётчиками */
+const expCats = JSON.parse(readFileSync(join(expDir, 'categories.json'), 'utf8'));
+chk('в дереве разделов один корень', expCats.tree.length, 1);
+chk('плоский список разделов не пуст', expCats.flat.length > 0, true);
+chk('счётчики товаров в разделах сходятся',
+  expCats.flat.reduce((n, c) => n + c.productCount, 0) >= fixtureStats.products, true);
+
+/* Манифест обязан совпадать с фактическим содержимым файлов */
+const manifest = JSON.parse(readFileSync(join(expDir, 'manifest.json'), 'utf8'));
+chk('в манифесте верное число записей', manifest.products, fixtureStats.products);
+chk('манифест указывает загрузочный файл', manifest.importFile, 'products.jsonl');
+chk('манифест указывает первичный ключ', manifest.primaryKey, 'sourceUrl');
+chk('в манифесте перечислены все файлы', manifest.files.map((f) => f.name).sort(), [...EXPORT_FILES].sort());
+chk('размеры файлов в манифесте настоящие',
+  manifest.files.every((f) => statSync(join(expDir, f.name)).size === f.bytes), true);
+chk('колонки CSV описаны в манифесте', manifest.columns.products.includes('price'), true);
+chk('в фикстуре нет неполных записей', manifest.incomplete, []);
+chk('счётчики манифеста совпадают с JSONL', manifest.stats.withImages, jsonl.filter((r) => r.images.length).length);
+
+/* Детерминизм выгрузки: повторный прогон не должен переставлять записи,
+   иначе каждая перезагрузка каталога выглядела бы как изменение всех строк. */
+const jsonl2 = readFileSync(join(run2.exportDir, 'products.jsonl'), 'utf8')
+  .split('\n').filter(Boolean)
+  .map((l) => { const r = JSON.parse(l); delete r.scrapedAt; return JSON.stringify(r); });
+const jsonl1 = jsonl.map((r) => { const c = { ...r }; delete c.scrapedAt; return JSON.stringify(c); });
+chk('выгрузка побайтово воспроизводима (кроме даты сбора)', jsonl2, jsonl1);
+
+/* Экспорт после --resume полный: потерянные при обрыве записи не теряются в выгрузке */
+const resumedJsonl = readFileSync(join(resumeExport, 'products.jsonl'), 'utf8').split('\n').filter(Boolean);
+chk('после --resume в выгрузке все товары', resumedJsonl.length, fixtureStats.products);
+chk('в выгрузке после --resume нет дубликатов',
+  new Set(resumedJsonl.map((l) => JSON.parse(l).sourceUrl)).size, fixtureStats.products);
 
 /* ------------------------------------------------------------------ */
 server.close();
