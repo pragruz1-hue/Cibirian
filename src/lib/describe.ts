@@ -211,6 +211,17 @@ export interface ProductDescription {
   specs: { label: string; value: string }[];
   application: string;
   kind: string;
+  /**
+   * true — описание взято дословно с сайта, показывать нужно его, а не
+   * сгенерированный текст и не плашку «составлено по характеристикам»:
+   * она вводила бы клиента в заблуждение.
+   */
+  fromSite: boolean;
+}
+
+/** Есть ли у товара дословное описание с сайта */
+export function hasSiteDescription(p: Product): boolean {
+  return Boolean(p.descriptionHtml?.trim());
 }
 
 function joinList(items: string[]): string {
@@ -256,7 +267,8 @@ export function describeProduct(p: Product): ProductDescription {
     ...(p.palette?.length ? [{ label: 'Палитра / оттенок', value: joinList(p.palette) }] : []),
     ...(cat ? [{ label: 'Раздел каталога', value: cat.name }] : []),
     { label: 'Наличие', value: p.inStock ? 'Есть в наличии' : 'Нет в наличии, под заказ' },
-    { label: 'Артикул', value: `SBC-${String(p.id).padStart(6, '0')}` },
+    // Артикул продавца важнее внутреннего кода: клиент сверяет его с сайтом
+    { label: 'Артикул', value: p.sku?.trim() || `SBC-${String(p.id).padStart(6, '0')}` },
   ];
 
   return {
@@ -265,5 +277,6 @@ export function describeProduct(p: Product): ProductDescription {
     specs,
     application: kind.how,
     kind: kind.label,
+    fromSite: hasSiteDescription(p),
   };
 }

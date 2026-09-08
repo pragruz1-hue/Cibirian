@@ -10,7 +10,13 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "import": "node scripts/import-bitrix.mjs",
-    "import:dry": "node scripts/import-bitrix.mjs --dry-run"
+    "import:dry": "node scripts/import-bitrix.mjs --dry-run",
+    "test:parser": "node scripts/test-parser.mjs",
+    "scrape": "node scripts/scrape-catalog.mjs",
+    "scrape:dry": "node scripts/scrape-catalog.mjs --dry-run",
+    "scrape:try": "node scripts/scrape-catalog.mjs --limit 20 --save-html",
+    "scrape:urls": "node scripts/scrape-catalog.mjs --urls-only .scrape-cache/urls.txt",
+    "scrape:resume": "node scripts/scrape-catalog.mjs --resume"
   },
   "dependencies": {
     "next": "^15.5.25",

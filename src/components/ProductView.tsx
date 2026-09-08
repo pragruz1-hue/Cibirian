@@ -11,6 +11,7 @@ import {
   categoryProducts,
 } from '@/lib/catalog';
 import { describeProduct } from '@/lib/describe';
+import { htmlToText } from '@/lib/sanitize';
 import { formatPrice, seededShows } from '@/lib/format';
 import type { Product } from '@/lib/types';
 
@@ -21,14 +22,19 @@ export default function ProductView({ product: p }: { product: Product }) {
   const related = relatedProducts(p, 5);
   const discount = p.oldPrice ? Math.round((1 - p.price / p.oldPrice) * 100) : 0;
 
+  // Артикул продавца и описание с сайта — клиент сверяет карточку с оригиналом,
+  // поэтому внутренний код SBC-* показываем только когда своего артикула нет.
+  const sku = p.sku?.trim() || `SBC-${String(p.id).padStart(6, '0')}`;
+  const siteText = htmlToText(p.descriptionHtml);
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: p.name,
     brand: { '@type': 'Brand', name: p.brand },
     image: p.images,
-    description: d.short,
-    sku: `SBC-${String(p.id).padStart(6, '0')}`,
+    description: siteText ? siteText.slice(0, 500) : d.short,
+    sku,
     offers: {
       '@type': 'Offer',
       price: p.price,
@@ -65,7 +71,7 @@ export default function ProductView({ product: p }: { product: Product }) {
           <div className="p-rating">
             <Rating id={p.id} />
             <span>·</span>
-            <span>Код товара: SBC-{String(p.id).padStart(6, '0')}</span>
+            <span>Код товара: {sku}</span>
             <span>·</span>
             <span>{seededShows(p.id)} просмотров</span>
           </div>

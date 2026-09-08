@@ -1829,6 +1829,42 @@ h4 {
   margin-bottom: 6px;
 }
 
+.prose ol {
+  margin: 0 0 14px;
+  padding-left: 20px;
+}
+
+/* Картинки из описания на сайте (схемы нанесения, палитры) */
+.prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 14px 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-2);
+}
+
+/* Таблицы характеристик, приехавшие вместе с описанием */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin: 14px 0;
+}
+
+.prose td,
+.prose th {
+  border-bottom: 1px solid var(--line-2);
+  padding: 7px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  color: var(--ink);
+  font-weight: 600;
+}
+
 .spec-table {
   width: 100%;
   border-collapse: collapse;

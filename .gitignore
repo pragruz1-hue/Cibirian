@@ -7,3 +7,6 @@ dist/
 .env*
 .DS_Store
 npm-debug.log*
+
+# Кэш и промежуточные файлы парсера каталога (scripts/scrape-catalog.mjs)
+.scrape-cache/

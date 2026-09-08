@@ -256,7 +256,7 @@ export function parseCsv(src, delim = null) {
 const TRUTHY = new Set(['true', '1', 'yes', 'y', 'да', 'д', 'в наличии', 'есть']);
 const FALSY = new Set(['false', '0', 'no', 'n', 'нет', 'н', 'отсутствует']);
 
-function toBool(v, fallback = true) {
+export function toBool(v, fallback = true) {
   const s = String(v ?? '').trim().toLowerCase();
   if (!s) return fallback;
   if (TRUTHY.has(s)) return true;
@@ -264,7 +264,7 @@ function toBool(v, fallback = true) {
   return Number(s) > 0;
 }
 
-function toNumber(v) {
+export function toNumber(v) {
   const s = String(v ?? '').replace(/\s+/g, '').replace(',', '.').replace(/[^\d.-]/g, '');
   const n = Number.parseFloat(s);
   return Number.isFinite(n) ? n : null;
@@ -274,16 +274,26 @@ function toNumber(v) {
  * «1000 мл», «500 г», «10 гр» → нормализованный объём как на сайте.
  * Голые числа из свойства «Объём» считаем миллилитрами (defaultUnit).
  */
-function normalizeVolume(v, defaultUnit = 'мл') {
+export function normalizeVolume(v, defaultUnit = 'мл') {
   const raw = String(v ?? '').trim();
   if (!raw) return '';
-  const num = raw.match(/[\d.,]+/)?.[0]?.replace(',', '.');
+  // Наборы вида «2×100 мл» к одному числу не сводим — иначе выйдет «2 мл»
+  if (/\d\s*[×xх*]\s*\d/i.test(raw)) return raw.replace(/\s+/g, ' ');
+  // Обычный и неразрывный пробел — разделители тысяч: «1 000 мл» → 1000.
+  // Простое /[\d.,]+/ взяло бы только «1».
+  const num = raw
+    .match(/\d[\d\s\u00a0]*(?:[.,]\d+)?/)?.[0]
+    ?.replace(/[\s\u00a0]/g, '')
+    .replace(',', '.');
   if (!num) return raw;
   const n = Number.parseFloat(num);
   if (!Number.isFinite(n)) return raw;
-  const pretty = n.toLocaleString('ru-RU').replace(/,/g, ' ');
+  // Намеренно без toLocaleString: он даёт «1 000» с неразрывным пробелом,
+  // а фасет объёма в каталоге один — «1000 мл». Иначе фильтр раздвоится.
+  const pretty = String(n);
 
-  const unit = raw.match(/(мл|ml|г|гр|g|л|l)(?![а-яa-z])/i)?.[1]?.toLowerCase();
+  // «гр» раньше «г»: иначе короткая альтернатива съест первую букву
+  const unit = raw.match(/(мл|ml|гр|г|g|л|l)(?![а-яёa-z])/i)?.[1]?.toLowerCase();
   if (!unit) return `${pretty} ${defaultUnit}`;
   if (['мл', 'ml'].includes(unit)) return `${pretty} мл`;
   if (['г', 'гр', 'g'].includes(unit)) return `${pretty} ${raw.toLowerCase().includes('гр') ? 'гр' : 'г'}`;
@@ -298,30 +308,71 @@ const KNOWN_BRANDS = [
   'DOMIX', 'RUNAIL', 'INDIGO', 'ARAVIA', '360',
 ];
 
+/**
+ * Слова, которые в названии означают линейку или свойство, а не бренд.
+ * Без этого «Краситель BACO SOFT 10.0 …» дал бы бренд «SOFT».
+ */
+const LINE_WORDS = new Set([
+  'SOFT', 'CARE', 'PURIFY', 'PRO', 'PLUS', 'COLOR', 'COLOUR', 'KERATIN', 'VOLUME',
+  'STYLE', 'TOTAL', 'ACTIVE', 'EXTRA', 'SPECIAL', 'PREMIUM', 'SILK', 'BIO', 'ECO',
+  'NEW', 'HIT', 'PROFESSIONAL', 'SALON', 'BEAUTY', 'HAIR', 'SKIN', 'SPA', 'ART',
+]);
+
 export function guessBrand(name) {
   const upper = ` ${String(name ?? '').toUpperCase()} `;
   const found = KNOWN_BRANDS
     .filter((b) => upper.includes(` ${b} `) || upper.includes(` ${b},`) || upper.includes(` ${b}.`))
     .sort((a, b) => b.length - a.length)[0];
   if (found) return found;
-  // Последний токен капсом длиной >= 3 — часто это бренд в конце названия
+
+  // Бренд стоит раньше линейки, поэтому берём ПЕРВЫЙ капс-токен, пропуская
+  // слова-характеристики. «BACO SOFT» → BACO.
   const tokens = String(name ?? '').split(/[\s,]+/).filter(Boolean);
   const caps = tokens.filter((t) => /^[A-ZА-ЯЁ0-9’']{3,}$/.test(t));
-  return caps[caps.length - 1] ?? 'Без бренда';
+  const meaningful = caps.filter((t) => !LINE_WORDS.has(t.toUpperCase()));
+  return meaningful[0] ?? caps[0] ?? 'Без бренда';
 }
 
-/** Линейка: второй капс-токен рядом с брендом, если есть */
-function guessLine(name, brand) {
+/**
+ * Линия бренда — идущие подряд слова КАПСОМ сразу после названия бренда:
+ * «Шампунь … OLLIN SALON BEAUTY 1000мл» → «SALON BEAUTY».
+ *
+ * Приводить всё название к верхнему регистру нельзя: тогда «для придания
+ * объема» станет неотличимо от имени линии и в line уедет пол-названия.
+ */
+export function guessLine(name, brand) {
   if (!brand || brand === 'Без бренда') return '';
-  const upper = String(name ?? '').toUpperCase();
-  const idx = upper.indexOf(brand.toUpperCase());
+  const raw = String(name ?? '');
+  const upperName = raw.toUpperCase();
+
+  // Бренд из свойства часто написан иначе, чем в названии: свойство даёт
+  // «OLLIN Professional», а в названии «OLLIN SALON BEAUTY 1000мл».
+  // Без запасного якоря линейка терялась бы у всех таких товаров.
+  let anchor = String(brand);
+  if (!upperName.includes(anchor.toUpperCase())) {
+    const spaced = ` ${upperName} `;
+    anchor =
+      KNOWN_BRANDS.filter((b) => spaced.includes(` ${b} `)).sort((a, b) => b.length - a.length)[0] ?? '';
+  }
+  if (!anchor) return '';
+
+  const idx = upperName.indexOf(anchor.toUpperCase());
   if (idx < 0) return '';
-  const rest = upper.slice(idx + brand.length).replace(/^[^A-ZА-ЯЁ0-9]+/, '');
-  const m = rest.match(/^[A-ZА-ЯЁ0-9’'&.\- ]{2,40}/);
+
+  const rest = raw.slice(idx + anchor.length).replace(/^[^A-Za-zА-Яа-яЁё0-9]+/, '');
+  const m = rest.match(
+    /^[A-ZА-ЯЁ0-9][A-ZА-ЯЁ0-9’'&.\-]*(?:[ \-]+[A-ZА-ЯЁ0-9][A-ZА-ЯЁ0-9’'&.\-]*)*/,
+  );
   if (!m) return '';
-  const line = m[0].trim();
-  // Не считаем линейкой технические хвосты
-  if (/^\d/.test(line) || line.length < 2) return '';
+
+  // Хвостовая фасовка в название линии не входит: «SALON BEAUTY 1000» → «SALON BEAUTY»
+  const line = m[0]
+    .replace(/(?:^|[\s\-])\d+(?:[.,]\d+)?(?:\s*(?:МЛ|ML|Г|ГР|Л|L))?$/i, '')
+    .trim();
+
+  if (line.length < 2) return '';
+  // «OLLIN PROFESSIONAL» — это бренд, а не линейка
+  if (KNOWN_BRANDS.some((b) => line.toUpperCase().includes(b))) return '';
   return line;
 }
 
@@ -428,8 +479,11 @@ export function importBitrixXml(src, opts = {}) {
     // Группа → путь раздела
     const groupIds = [];
     for (const gr of kids(g, 'Группы').concat(kids(g, 'Groups'))) {
+      // Основной формат Битрикс «Коммерческая информация»: <Группы><Группа>27</Группа></Группы>.
+      // Сам <Группы> при этом имеет пустой .text, значение лежит в дочернем узле.
+      for (const gi of kids(gr, 'Группа').concat(kids(gr, 'Group'))) if (gi.text) groupIds.push(gi.text);
       for (const gi of kids(gr, 'Ид').concat(kids(gr, 'Id'))) if (gi.text) groupIds.push(gi.text);
-      if (gr.text) groupIds.push(gr.text);
+      if (!groupIds.length && gr.text) groupIds.push(gr.text);
     }
     const gid = groupIds[0];
     let catPath = '';
@@ -678,4 +732,7 @@ function main() {
   console.log('\nДальше: npm run build && npm start');
 }
 
-main();
+// Запуск только когда файл исполняется напрямую, а не импортируется
+const invokedDirectly =
+  process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+if (invokedDirectly) main();

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Counter from './Counter';
 import { useShop } from '@/store/ShopProvider';
 import { describeProduct } from '@/lib/describe';
+import { sanitizeHtml } from '@/lib/sanitize';
 import { relatedProducts } from '@/lib/catalog';
 import type { Product } from '@/lib/types';
 
@@ -51,18 +52,26 @@ export function Tabs({ p }: { p: Product }) {
 
       {tab === 'desc' && (
         <div className="prose">
-          {d.paragraphs.map((t, i) => <p key={i}>{t}</p>)}
-          <h3>Ключевые особенности</h3>
-          <ul>
-            <li>Профессиональная линейка {p.brand}{p.line ? ` ${p.line}` : ''} для салонного и домашнего применения.</li>
-            {(p.purpose ?? []).map((x) => <li key={x}>Действие: {x}.</li>)}
-            {p.volume ? <li>Экономичный расход, объём упаковки — {p.volume}.</li> : null}
-            <li>Оригинальная продукция, поставляемая официальными дистрибьюторами.</li>
-          </ul>
-          <div className="notice">
-            Описание составлено по характеристикам товара и типу средства. Точный состав,
-            способ применения и ограничения производителя указаны на упаковке.
-          </div>
+          {d.fromSite ? (
+            /* Описание дословно с сайта: ни сгенерированного текста, ни плашки
+               «составлено по характеристикам» — они дали бы расхождение с оригиналом. */
+            <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(p.descriptionHtml) }} />
+          ) : (
+            <>
+              {d.paragraphs.map((t, i) => <p key={i}>{t}</p>)}
+              <h3>Ключевые особенности</h3>
+              <ul>
+                <li>Профессиональная линейка {p.brand}{p.line ? ` ${p.line}` : ''} для салонного и домашнего применения.</li>
+                {(p.purpose ?? []).map((x) => <li key={x}>Действие: {x}.</li>)}
+                {p.volume ? <li>Экономичный расход, объём упаковки — {p.volume}.</li> : null}
+                <li>Оригинальная продукция, поставляемая официальными дистрибьюторами.</li>
+              </ul>
+              <div className="notice">
+                Описание составлено по характеристикам товара и типу средства. Точный состав,
+                способ применения и ограничения производителя указаны на упаковке.
+              </div>
+            </>
+          )}
         </div>
       )}
 
@@ -82,7 +91,11 @@ export function Tabs({ p }: { p: Product }) {
       {tab === 'apply' && (
         <div className="prose">
           <h3>Способ применения</h3>
-          <p>{d.application}</p>
+          {p.applicationHtml?.trim() ? (
+            <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(p.applicationHtml) }} />
+          ) : (
+            <p>{d.application}</p>
+          )}
           {related.length > 0 && (
             <>
               <h3>Часто покупают вместе</h3>
