@@ -531,6 +531,28 @@ export function cleanHtml(html) {
 }
 
 /**
+ * Обрезает фрагмент по первой незакрытой </div>.
+ *
+ * Зона описания берётся окном после открывающего тега, поэтому в окно попадает
+ * и её собственный закрывающий тег. Без отсечки в descriptionHtml оставался
+ * лишний </div> — разметка описания становилась несбалансированной.
+ */
+function cutAtUnbalancedDiv(html) {
+  let depth = 0;
+  const re = /<div\b[^>]*>|<\/div\s*>/gi;
+  let m;
+  while ((m = re.exec(html)) !== null) {
+    if (/^<\//i.test(m[0])) {
+      depth--;
+      if (depth < 0) return html.slice(0, m.index);
+    } else {
+      depth++;
+    }
+  }
+  return html;
+}
+
+/**
  * Содержимое первого блока, чей класс подходит под признак зоны описания.
  * Блочную структуру целиком регуляркой не взять, поэтому берём окно после
  * открывающего тега и обрезаем его по границе следующего смыслового блока.
@@ -557,7 +579,7 @@ function zoneContent(html, classRe, maxLen = 12000) {
     const sm = chunk.match(re);
     if (sm && sm.index !== undefined && sm.index < cut) cut = sm.index;
   }
-  return cleanHtml(chunk.slice(0, cut));
+  return cleanHtml(cutAtUnbalancedDiv(chunk.slice(0, cut)));
 }
 
 const DESCRIPTION_ZONES = [
@@ -1049,6 +1071,21 @@ async function runQueue(urls, opts, state, onItem) {
   saveCheckpoint(join(opts.cache, 'progress.json'), state);
 }
 
+/**
+ * Упорядочивает разобранные карточки так, как они шли в sitemap.
+ *
+ * Без этого id зависят от того, в каком порядке ответили страницы при
+ * параллельных запросах, и при повторном прогоне перемешиваются. А к id
+ * привязаны рейтинг, счётчик просмотров и сохранённая корзина покупателя.
+ */
+export function orderBySitemap(products, sitemapPaths) {
+  const order = new Map(sitemapPaths.map((u, i) => [u, i]));
+  const last = Number.MAX_SAFE_INTEGER;
+  return [...products].sort(
+    (a, b) => (order.get(a.url) ?? last) - (order.get(b.url) ?? last),
+  );
+}
+
 function dedupe(products) {
   const byKey = new Map();
   for (const p of products) {
@@ -1208,7 +1245,9 @@ async function main() {
   await runQueue(targets, opts, state, (path, i, total) => scrapeOne(path, opts, state, i, total));
 
   const failed = Object.entries(state.done).filter(([, v]) => v.error);
-  const products = dedupe(state.products.map(toAppSchema));
+  // Сначала порядок по sitemap, потом id — иначе они пляшут от тайминга сети
+  const ordered = orderBySitemap(state.products, productUrls);
+  const products = dedupe(ordered.map(toAppSchema));
   const tree = buildCategoryTree(state.products);
 
   report(products, categories);

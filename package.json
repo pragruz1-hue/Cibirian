@@ -16,7 +16,9 @@
     "scrape:dry": "node scripts/scrape-catalog.mjs --dry-run",
     "scrape:try": "node scripts/scrape-catalog.mjs --limit 20 --save-html",
     "scrape:urls": "node scripts/scrape-catalog.mjs --urls-only .scrape-cache/urls.txt",
-    "scrape:resume": "node scripts/scrape-catalog.mjs --resume"
+    "scrape:resume": "node scripts/scrape-catalog.mjs --resume",
+    "test:scrape": "node scripts/test-scrape-e2e.mjs",
+    "fixture-site": "node scripts/fixture-site.mjs"
   },
   "dependencies": {
     "next": "^15.5.25",
